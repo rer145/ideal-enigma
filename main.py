@@ -76,8 +76,43 @@ def adjust_coords(L):
     return output
 
 
+def get_shot_summary(data, golfer, tournament, r, hole):
+    temp_df = data.loc[
+        (data['Player Full Name'] == golfer) &
+        (data['Tournament Name'] == tournament) &
+        (data['Round'] == r) &
+        (data['Hole Number'] == hole) &
+        (data['Trajectory Sequence'] == 1)
+        ]
+
+    # plot_labels.append([golfer, tournament, r, hole])
+
+    summary = {}
+    summary["Player First Name"] = temp_df.iloc[0]["Player First Name"]
+    summary["Player Last Name"] = temp_df.iloc[0]["Player Last Name"]
+    summary["Player Full Name"] = golfer
+    summary["Tournament Name"] = tournament
+    summary["Round"] = r
+    summary["Hole Number"] = hole
+    summary["Club Head Speed"] = temp_df.iloc[0]["Club Head Speed"]
+    summary["Ball Speed"] = temp_df.iloc[0]["Ball Speed"]
+    summary["Smash Factor"] = temp_df.iloc[0]["Smash Factor"]
+    summary["Vertical Launch Angle"] = temp_df.iloc[0]["Vertical Launch Angle"]
+    summary["Apex Height"] = temp_df.iloc[0]["Apex Height"]
+    summary["Actual Flight Time"] = temp_df.iloc[0]["Actual Flight Time"]
+    summary["Actual Range"] = temp_df.iloc[0]["Actual Range"]
+    summary["Actual Height"] = temp_df.iloc[0]["Actual Height"]
+    summary["Distance of Impact"] = temp_df.iloc[0]["Distance of Impact"]
+    summary["Club"] = temp_df.iloc[0]["Club"]
+    summary["Total Distance"] = temp_df.iloc[0]["Total Distance"]
+    summary["Ending Location Description"] = temp_df.iloc[0]["Ending Location Description"]
+    summary["Weather"] = temp_df.iloc[0]["Weather"]
+
+    plot_labels.append(summary)
+
+
 def add_plot_data_2D(data, golfer, tournament, r, hole):
-    plot_labels.append([golfer, tournament, r, hole])
+    get_shot_summary(data, golfer, tournament, r, hole)
 
     x = data.loc[
         (data['Player Full Name'] == golfer) &
@@ -221,7 +256,10 @@ def plot2D():
 
     # single line plot
     for i in range(len(plot_data)):
-        label = '{0} - Round {1} #{2}'.format(plot_labels[i][0], plot_labels[i][2], plot_labels[i][3])
+        label = '{0} - Round {1}'.format(
+            plot_labels[i]["Player Last Name"],
+            plot_labels[i]["Round"])
+        # label = '{0} - Round {1} #{2}'.format(plot_labels[i][0], plot_labels[i][2], plot_labels[i][3])
         line_data.append(ax.plot(plot_data[i][0, 0:1], plot_data[i][1, 0:1], linewidth=plot_linewidth, label=label)[0])
 
 
@@ -270,13 +308,14 @@ if __name__ == "__main__":
     df = pd.read_csv(data_file, sep=';')
     df["Player Full Name"] = df["Player First Name"] + " " + df["Player Last Name"]
 
-    add_plot_data_2D(df, 'Phil Mickelson', 'Shell Houston Open', 4, 8)
-    add_plot_data_2D(df, 'Phil Mickelson', 'Dell Technologies Championship', 2, 2)
+    # add_plot_data_2D(df, 'Phil Mickelson', 'Shell Houston Open', 4, 8)
+    # add_plot_data_2D(df, 'Phil Mickelson', 'Dell Technologies Championship', 2, 2)
 
     add_plot_data_2D(df, 'Phil Mickelson', 'Safeway Open', 1, 5)
+    # add_plot_data_2D(df, 'Phil Mickelson', 'Wells Fargo Championship', 1, 13)
     add_plot_data_2D(df, 'Phil Mickelson', 'Safeway Open', 2, 5)
-    add_plot_data_2D(df, 'Phil Mickelson', 'Safeway Open', 3, 5)
-    add_plot_data_2D(df, 'Phil Mickelson', 'Safeway Open', 4, 5)
+    # add_plot_data_2D(df, 'Phil Mickelson', 'Safeway Open', 3, 5)
+    # add_plot_data_2D(df, 'Phil Mickelson', 'Safeway Open', 4, 5)
     plot2D()
 
     # add_plot_data_3D(df, 'Phil Mickelson', 'Safeway Open', 1, 5)

@@ -68,6 +68,19 @@ data_file = 'traj-detail-2017-mickelson594296.TXT'
 data = pd.read_csv(data_file, sep=';')
 data["Player Full Name"] = data["Player First Name"] + " " + data["Player Last Name"]
 
+temp_df = data.loc[
+        (data['Player Full Name'] == 'Phil Mickelson') &
+        (data['Tournament Name'] == 'Safeway Open') &
+        (data['Round'] == 1) &
+        (data['Hole Number'] == 5) &
+        (data['Trajectory Sequence'] == 1)
+        ]
+
+print(temp_df.iloc[0]["Club"])
+
+
+exit(0)
+
 add_plot_data_2D(data, 'Phil Mickelson', 'Safeway Open', 1, 5)
 add_plot_data_2D(data, 'Phil Mickelson', 'Safeway Open', 2, 5)
 add_plot_data_2D(data, 'Phil Mickelson', 'Safeway Open', 3, 5)
