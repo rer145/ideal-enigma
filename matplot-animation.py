@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.animation as animation
-import pandas as pd
-from sys import exit
 
 def update_lines(num, data, line):
     line.set_data(data[0:2, :num])
@@ -53,7 +51,7 @@ for i in [1,2,3]:
         currentz = z3
 
     data = np.array((currentx, currenty, currentz))
-    line = ax.plot(data[0, 0:1], data[1, 0:1], data[2, 0:1])[0]
+    line = ax.plot(data[0, 0:1], data[1, 0:1], data[2, 0:1], linewidth=10)[0]
     ax.set_xlim3d([min(currentx)-padding, max(currentx)+padding])
     ax.set_label('x')
 
