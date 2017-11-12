@@ -72,7 +72,7 @@ class ProTracerDialog(object):
     # Custom Methods/Properties
     def set_filename(self, filename):
         # check if file exists?
-        self.filename = 'data/' + filename
+        self.filename = filename
 
     def initialize(self):
         if len(self.filename) > 0:

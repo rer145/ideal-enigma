@@ -1,4 +1,5 @@
 # Load Libraries
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 # Load Resources
@@ -77,17 +78,24 @@ class SplashWindow(object):
         qtProTracerDialog = QtWidgets.QDialog()
         self.proTracerDialog = dialog_protracer.ProTracerDialog()
         self.proTracerDialog.setupUi(qtProTracerDialog)
-        self.proTracerDialog.set_filename('traj-detail-2017771908.TXT')
+        self.proTracerDialog.set_filename(os.getcwd() + '\\data\\traj-detail-2017771908.TXT')
         self.proTracerDialog.initialize()
         qtProTracerDialog.exec()
 
     def select_file(self):
-        # show file selection box before showing dialog
-        qtProTracerDialog = QtWidgets.QDialog()
-        self.proTracerDialog = dialog_protracer.ProTracerDialog()
-        self.proTracerDialog.setupUi(qtProTracerDialog)
-        self.proTracerDialog.initialize()
-        qtProTracerDialog.exec()
+        options = QtWidgets.QFileDialog.Options()
+        # options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        filename, _ = QtWidgets.QFileDialog.getOpenFileName(
+            QtWidgets.QWidget(), "QFileDialog.getOpenFileName()", "",
+            "All Files (*);;CSV Files (*.csv);;Text Files (*.txt)", options=options)
+
+        if filename:
+            qtProTracerDialog = QtWidgets.QDialog()
+            self.proTracerDialog = dialog_protracer.ProTracerDialog()
+            self.proTracerDialog.setupUi(qtProTracerDialog)
+            self.proTracerDialog.set_filename(filename)
+            self.proTracerDialog.initialize()
+            qtProTracerDialog.exec()
 
 
 class MainWindowLauncher:
