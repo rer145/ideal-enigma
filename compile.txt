@@ -1,0 +1,11 @@
+rem compile resource files
+pyrcc5 -o main_rc.py resources/main.qrc
+pyrcc5 -o about_rc.py resources/about.qrc
+
+rem compile ui files (only when changes made)
+pyuic5 -x ui/protracer.ui -o protracer.py
+pyuic5 -x ui/about.ui -o about.py
+pyuic5 -x ui/main.ui -o app.py
+
+rem launch program
+python pt.py
