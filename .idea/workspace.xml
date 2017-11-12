@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbfe53b2-337d-4f46-a2ac-0fe93b1d7cd1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dialog_protracer.py" afterPath="$PROJECT_DIR$/dialog_protracer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pt_data.py" afterPath="$PROJECT_DIR$/pt_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ui/protracer.ui" afterPath="$PROJECT_DIR$/ui/protracer.ui" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +20,8 @@
           <file leaf-file-name="dialog_protracer.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/dialog_protracer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-459">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="-756">
+                  <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#42#0" expanded="true" />
                   </folding>
@@ -43,7 +45,7 @@
             <entry file="file://$PROJECT_DIR$/pt_data.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="499">
-                  <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+                  <caret line="79" column="5" lean-forward="true" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -54,8 +56,8 @@
           <file leaf-file-name="scratch_7.py" pinned="false" current-in-tab="false">
             <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+                <state relative-caret-position="505">
+                  <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -70,7 +72,7 @@
           <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1173">
+                <state relative-caret-position="-1326">
                   <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
@@ -97,11 +99,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py" />
-        <option value="$PROJECT_DIR$/pt_data.py" />
-        <option value="$PROJECT_DIR$/dialog_protracer.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_8.py" />
         <option value="$PROJECT_DIR$/window_main.py" />
+        <option value="$PROJECT_DIR$/pt_data.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py" />
+        <option value="$PROJECT_DIR$/dialog_protracer.py" />
       </list>
     </option>
   </component>
@@ -170,7 +172,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scratch_8">
+  <component name="RunManager" selected="Python.scratch_7">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -229,8 +231,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.scratch_8" />
-        <item index="1" class="java.lang.String" itemvalue="Python.scratch_7" />
+        <item index="0" class="java.lang.String" itemvalue="Python.scratch_7" />
+        <item index="1" class="java.lang.String" itemvalue="Python.scratch_8" />
         <item index="2" class="java.lang.String" itemvalue="Python.app" />
       </list>
     </recent_temporary>
@@ -276,7 +278,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -290,7 +294,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1173">
+        <state relative-caret-position="-1326">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -314,26 +318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pt_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/window_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -344,10 +328,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pt_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="79" column="5" lean-forward="true" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dialog_protracer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-459">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-756">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>

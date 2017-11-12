@@ -101,7 +101,7 @@
     <attribute name="title">
      <string>Shot List</string>
     </attribute>
-    <widget class="QTableView" name="tblShotList">
+    <widget class="QTreeView" name="tblShotList">
      <property name="geometry">
       <rect>
        <x>0</x>

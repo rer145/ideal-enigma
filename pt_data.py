@@ -62,11 +62,12 @@ def get_tournaments_by_golfer(data, golfer, last_name_first=True):
 
 
 def get_shots_by_golfer_tournament(data, golfer, tournament, last_name_first=True):
-    """ (DataFrame, stirng, string, bool) -> list
+    """ (DataFrame, string, string, bool) -> DataFrame
     
     Returns a list of all shots by a golfer for a tournament.
     """
 
+    # TODO: put into helper function
     if last_name_first:
         col = "Player Last First"
     else:
@@ -76,4 +77,4 @@ def get_shots_by_golfer_tournament(data, golfer, tournament, last_name_first=Tru
         (data[col] == golfer) &
         (data["Tournament Name"] == tournament) &
         (data['Trajectory Sequence'] == 1)
-    ].values.tolist()
+    ]
