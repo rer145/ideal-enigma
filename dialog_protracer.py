@@ -1,10 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-# Import Resource Module
+import pandas as pd
+import pt_data
 
 class ProTracerDialog(object):
     def __init__(self):
         self.filename = ''
+        self.data = pd.DataFrame()
         
     def setupUi(self, dlgProTracer):
         self.dialog = dlgProTracer
@@ -52,6 +54,9 @@ class ProTracerDialog(object):
         QtCore.QMetaObject.connectSlotsByName(dlgProTracer)
 
         # Wire up event handlers
+        self.btnSearchShots.clicked.connect(self.search_shots)
+        # self.ddlGolfer.currentTextChanged.connect(self.on_golfer_changed)
+        # self.ddlTournament.currentTextChanged.connect(self.on_tournament_changed)
 
     def retranslateUi(self, dlgProTracer):
         _translate = QtCore.QCoreApplication.translate
@@ -64,15 +69,60 @@ class ProTracerDialog(object):
         self.tabPlots.setTabText(self.tabPlots.indexOf(self.tabProTracer), _translate("dlgProTracer", "ProTracer"))
         self.tabPlots.setTabText(self.tabPlots.indexOf(self.tabShotStats), _translate("dlgProTracer", "Shot Stats"))
         
-
     # Custom Methods/Properties
     def set_filename(self, filename):
-        self.filename = filename
-        #_translate = QtCore.QCoreApplication.translate
-        #self.lblFileName.setText(_translate("dlgProTracer", filename))
-        #self.lblFileNameProp.setText(_translate("dlgProTracer", self.filename))
-    
+        # check if file exists?
+        self.filename = 'data/' + filename
+
+    def initialize(self):
+        if len(self.filename) > 0:
+            self.data = pt_data.load_file(self.filename)
+            self.populate_golfers()
+            self.populate_tournaments()
+
+    def populate_golfers(self, tournament=''):
+        if len(tournament) > 0:
+            golfers = pt_data.get_golfers_by_tournament(self.data, tournament)
+        else:
+            golfers = pt_data.get_all_golfers(self.data)
+
+        self.ddlGolfer.clear()
+        self.ddlGolfer.addItem("")
+        self.ddlGolfer.addItems(golfers)
+
+    def populate_tournaments(self, golfer=''):
+        if len(golfer) > 0:
+            tournaments = pt_data.get_tournaments_by_golfer(golfer)
+        else:
+            tournaments = pt_data.get_all_tournaments(self.data)
+
+        self.ddlTournament.clear()
+        self.ddlTournament.addItem("")
+        self.ddlTournament.addItems(tournaments)
+
+    def search_shots(self):
+        golfer = self.ddlGolfer.currentText()
+        tournament = self.ddlTournament.currentText()
+
+        if len(golfer) > 0 and len(tournament) > 0:
+            shots = pt_data.get_shots_by_golfer_tournament(self.data, golfer, tournament)
+            QtWidgets.QMessageBox.information(
+                QtWidgets.QWidget(), 'Shot Search Results',
+                'There are {0} shots in the data file for {1} at {2}'.format(
+                    len(shots), golfer, tournament
+                ))
+        else:
+            QtWidgets.QMessageBox.information(
+                QtWidgets.QWidget(), 'Shot Search Error',
+                'You need to select both a golfer and tournament before continuing.')
 
 
-    # Event Handlers
-    
+    def on_golfer_changed(self, golfer):
+        self.populate_tournaments(golfer)
+
+    def on_tournament_changed(self, tournament):
+        self.populate_golfers(tournament)
+
+
+
+    # on select of golfer or tournament, populate the other box
