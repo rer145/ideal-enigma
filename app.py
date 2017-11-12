@@ -5,8 +5,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import resource_main
 
 # Load Dialogs
-import ptabout
-import ptprotracer
+import dialog_about
+import dialog_protracer
 
 
 class SplashWindow(object):
@@ -66,7 +66,7 @@ class SplashWindow(object):
     # Event Handlers
     def show_about_dialog(self):
         qtAboutDialog = QtWidgets.QDialog()
-        self.aboutDialog = ptabout.AboutDialog()
+        self.aboutDialog = dialog_about.AboutDialog()
         self.aboutDialog.setupUi(qtAboutDialog)
         qtAboutDialog.exec()
 
@@ -75,14 +75,14 @@ class SplashWindow(object):
 
     def load_demo_file(self):
         qtProTracerDialog = QtWidgets.QDialog()
-        self.proTracerDialog = ptprotracer.ProTracerDialog()
+        self.proTracerDialog = dialog_protracer.ProTracerDialog()
         self.proTracerDialog.setupUi(qtProTracerDialog)
         self.proTracerDialog.set_filename('traj-detail-2017-mickelson594296.TXT')
         qtProTracerDialog.exec()
 
     def select_file(self):
         qtProTracerDialog = QtWidgets.QDialog()
-        self.proTracerDialog = ptprotracer.ProTracerDialog()
+        self.proTracerDialog = dialog_protracer.ProTracerDialog()
         self.proTracerDialog.setupUi(qtProTracerDialog)
         self.proTracerDialog.set_filename('none selected')
         qtProTracerDialog.exec()
