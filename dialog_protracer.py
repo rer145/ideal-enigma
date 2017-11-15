@@ -41,6 +41,9 @@ class ProTracerDialog(object):
         self.tblShotList.setObjectName("tblShotList")
         self.tblShotList.setRootIsDecorated(True)
         self.tblShotList.setAlternatingRowColors(True)
+        self.tblShotList.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tblShotList.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.tblShotList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tabPlots.addTab(self.tabShotList, "")
         self.tabProTracer = QtWidgets.QWidget()
         self.tabProTracer.setObjectName("tabProTracer")
@@ -108,13 +111,13 @@ class ProTracerDialog(object):
 
     def populate_shots_list(self, df):
         for i in range(len(df)):
-            self.add_shot_to_list(self.shot_list_model, df.iloc[i])
+            self.add_shot_to_list(self.shot_list_model, df.iloc[len(df)-1-i])
 
     def create_shots_list_model(self):
         model = QtGui.QStandardItemModel(0, 7, self.tblShotList)
         model.setHeaderData(0, QtCore.Qt.Horizontal, "Round")
         model.setHeaderData(1, QtCore.Qt.Horizontal, "Hole #")
-        model.setHeaderData(2, QtCore.Qt.Horizontal, "Carry Distance (yds)")
+        model.setHeaderData(2, QtCore.Qt.Horizontal, "Launch Angle (deg)")
         model.setHeaderData(3, QtCore.Qt.Horizontal, "Total Distance (yds)")
         model.setHeaderData(4, QtCore.Qt.Horizontal, "Apex (ft)")
         model.setHeaderData(5, QtCore.Qt.Horizontal, "Club Speed (mph)")
@@ -128,7 +131,10 @@ class ProTracerDialog(object):
         if len(golfer) > 0 and len(tournament) > 0:
             shots = pt_data.get_shots_by_golfer_tournament(self.data, golfer, tournament)
             if len(shots) > 0:
+                self.clear_shots_list()
                 self.populate_shots_list(shots)
+                self.tblShotList.setModel(self.shot_list_model)
+                self.tblShotList.show()
             else:
                 QtWidgets.QMessageBox.information(
                     QtWidgets.QWidget(), 'Shot Search Results',
@@ -140,15 +146,19 @@ class ProTracerDialog(object):
                 QtWidgets.QWidget(), 'Shot Search Error',
                 'You need to select both a golfer and tournament before continuing.')
 
+    def clear_shots_list(self):
+        # TODO: implement logic to clear items
+        return None
+
     def add_shot_to_list(self, model, shot):
         model.insertRow(0)
-        model.setData(model.index(0, 0), shot["Round"])
-        model.setData(model.index(0, 1), shot["Hole Number"])
-        model.setData(model.index(0, 2), round(shot["Distance of Impact"] * 0.27778, 1))
-        model.setData(model.index(0, 3), round(shot["Total Distance"] * 0.27778, 1))
-        model.setData(model.index(0, 4), round(shot["Apex Height"], 1))
-        model.setData(model.index(0, 5), round(shot["Club Head Speed"], 1))
-        model.setData(model.index(0, 6), round(shot["Ball Speed"], 1))
+        model.setData(model.index(0, 0), shot["Round"].item())
+        model.setData(model.index(0, 1), shot["Hole Number"].item())
+        model.setData(model.index(0, 2), round(shot["Vertical Launch Angle"].item(), 1))
+        model.setData(model.index(0, 3), round((shot["Total Distance"].item() / 12) / 3, 1))
+        model.setData(model.index(0, 4), round(shot["Apex Height"].item(), 1))
+        model.setData(model.index(0, 5), round(shot["Club Head Speed"].item(), 1))
+        model.setData(model.index(0, 6), round(shot["Ball Speed"].item(), 1))
 
     def on_golfer_changed(self, golfer):
         self.populate_tournaments(golfer)

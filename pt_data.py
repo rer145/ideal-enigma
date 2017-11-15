@@ -13,6 +13,7 @@ def load_file(filename):
     # Create helper columns
     data["Player Full Name"] = data["Player First Name"] + " " + data["Player Last Name"]
     data["Player Last First"] = data["Player Last Name"] + ", " + data["Player First Name"]
+    data["Index"] = range(data.shape[0])
 
     return data
 
@@ -64,7 +65,7 @@ def get_tournaments_by_golfer(data, golfer, last_name_first=True):
 def get_shots_by_golfer_tournament(data, golfer, tournament, last_name_first=True):
     """ (DataFrame, string, string, bool) -> DataFrame
     
-    Returns a list of all shots by a golfer for a tournament.
+    Returns a DataFrame of all shots by a golfer for a tournament.
     """
 
     # TODO: put into helper function
@@ -78,3 +79,13 @@ def get_shots_by_golfer_tournament(data, golfer, tournament, last_name_first=Tru
         (data["Tournament Name"] == tournament) &
         (data['Trajectory Sequence'] == 1)
     ]
+
+
+def get_all_shots(data):
+    """ (DataFrame) -> DataFrame
+
+    Returns a DataFrame of all unique shots in the data file.
+    """
+    return data.loc[
+        (data["Trajectory Sequence"] == 1)
+    ].sort_values(by=['Player Last Name', 'Player First Name', 'Tournament Name', 'Round', 'Hole Number'])

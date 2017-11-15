@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlgSearch</class>
+ <widget class="QDialog" name="dlgSearch">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PyProTracer Shot Search</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>771</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Shot List</string>
+   </property>
+   <widget class="QPushButton" name="btnAddShots">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>200</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Selected Shots</string>
+    </property>
+   </widget>
+   <widget class="QTreeWidget" name="tblShotList">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>751</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::MultiSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="columnCount">
+     <number>7</number>
+    </property>
+    <column>
+     <property name="text">
+      <string>Player</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Tournament</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Round # / Hole #</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Distance (yds)</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Club Speed (mph)</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Ball Speed (mph)</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Launch Angle (deg)</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>280</y>
+     <width>771</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Selected Shots</string>
+   </property>
+   <widget class="QPushButton" name="btnRemoveShots">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>200</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Selected Shots</string>
+    </property>
+   </widget>
+   <widget class="QTreeWidget" name="tblSelectedShots">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>751</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::MultiSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="columnCount">
+     <number>7</number>
+    </property>
+    <column>
+     <property name="text">
+      <string>Player</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Tournament</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Round # / Hole #</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Distance (yds)</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Club Speed (mph)</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Ball Speed (mph)</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Launch Angle (deg)</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="btn2D">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>540</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ProTracer 2D</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn3D">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>540</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ProTracer 3D</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

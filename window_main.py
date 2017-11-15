@@ -7,7 +7,8 @@ import resource_main
 
 # Load Dialogs
 import dialog_about
-import dialog_protracer
+#import dialog_protracer
+import dialog_search
 
 
 class SplashWindow(object):
@@ -75,12 +76,12 @@ class SplashWindow(object):
         QtCore.QCoreApplication.quit()
 
     def load_demo_file(self):
-        qtProTracerDialog = QtWidgets.QDialog()
-        self.proTracerDialog = dialog_protracer.ProTracerDialog()
-        self.proTracerDialog.setupUi(qtProTracerDialog)
-        self.proTracerDialog.set_filename(os.getcwd() + '\\data\\traj-detail-2017771908.TXT')
-        self.proTracerDialog.initialize()
-        qtProTracerDialog.exec()
+        qtSearchDialog = QtWidgets.QDialog()
+        self.searchDialog = dialog_search.SearchDialog()
+        self.searchDialog.setupUi(qtSearchDialog)
+        self.searchDialog.set_filename(os.getcwd() + '\\data\\traj-detail-2017771908.TXT')
+        self.searchDialog.initialize()
+        qtSearchDialog.exec()
 
     def select_file(self):
         options = QtWidgets.QFileDialog.Options()
@@ -90,12 +91,12 @@ class SplashWindow(object):
             "All Files (*);;CSV Files (*.csv);;Text Files (*.txt)", options=options)
 
         if filename:
-            qtProTracerDialog = QtWidgets.QDialog()
-            self.proTracerDialog = dialog_protracer.ProTracerDialog()
-            self.proTracerDialog.setupUi(qtProTracerDialog)
-            self.proTracerDialog.set_filename(filename)
-            self.proTracerDialog.initialize()
-            qtProTracerDialog.exec()
+            qtSearchDialog = QtWidgets.QDialog()
+            self.searchDialog = dialog_search.SearchDialog()
+            self.searchDialog.setupUi(qtSearchDialog)
+            self.searchDialog.set_filename(filename)
+            self.searchDialog.initialize()
+            qtSearchDialog.exec()
 
 
 class MainWindowLauncher:

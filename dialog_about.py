@@ -7,6 +7,8 @@ class AboutDialog(object):
         self.dialog = dlgAbout
         dlgAbout.setObjectName("dlgAbout")
         dlgAbout.resize(512, 273)
+        dlgAbout.setSizeGripEnabled(False)
+        dlgAbout.setModal(True)
         self.label = QtWidgets.QLabel(dlgAbout)
         self.label.setGeometry(QtCore.QRect(240, 10, 181, 51))
         font = QtGui.QFont()
