@@ -51,6 +51,16 @@
        <height>401</height>
       </rect>
      </property>
+     <widget class="QWidget" name="w_plot" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>761</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">

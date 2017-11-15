@@ -4,6 +4,9 @@ import os
 import pandas as pd
 import pt_data
 
+import dialog_protracer2d
+
+
 class SearchDialog(object):
     def __init__(self):
         self.filename = ''
@@ -29,11 +32,11 @@ class SearchDialog(object):
         self.tblShotList.setAlternatingRowColors(True)
         self.tblShotList.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.tblShotList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.tblShotList.setColumnCount(8)
+        self.tblShotList.setColumnCount(9)
         self.tblShotList.setObjectName("tblShotList")
         self.tblShotList.AdjustToContentsOnFirstShow = True
         self.tblShotList.setUpdatesEnabled(True)
-        self.tblShotList.setColumnHidden(7, True)
+        self.tblShotList.setColumnHidden(8, True)
         self.groupBox_3 = QtWidgets.QGroupBox(dlgSearch)
         self.groupBox_3.setGeometry(QtCore.QRect(10, 280, 771, 241))
         self.groupBox_3.setObjectName("groupBox_3")
@@ -47,11 +50,11 @@ class SearchDialog(object):
         self.tblSelectedShots.setAlternatingRowColors(True)
         self.tblSelectedShots.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.tblSelectedShots.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.tblSelectedShots.setColumnCount(8)
+        self.tblSelectedShots.setColumnCount(9)
         self.tblSelectedShots.setObjectName("tblSelectedShots")
         self.tblSelectedShots.AdjustToContentsOnFirstShow = True
         self.tblSelectedShots.setUpdatesEnabled(True)
-        self.tblSelectedShots.setColumnHidden(7, True)
+        self.tblSelectedShots.setColumnHidden(8, True)
         self.btn2D = QtWidgets.QPushButton(dlgSearch)
         self.btn2D.setGeometry(QtCore.QRect(210, 540, 181, 41))
         self.btn2D.setObjectName("btn2D")
@@ -76,18 +79,20 @@ class SearchDialog(object):
         self.tblShotList.setSortingEnabled(True)
         self.tblShotList.headerItem().setText(0, _translate("dlgSearch", "Player"))
         self.tblShotList.headerItem().setText(1, _translate("dlgSearch", "Tournament"))
-        self.tblShotList.headerItem().setText(2, _translate("dlgSearch", "Round # / Hole #"))
-        self.tblShotList.headerItem().setText(3, _translate("dlgSearch", "Distance (yds)"))
-        self.tblShotList.headerItem().setText(4, _translate("dlgSearch", "Apex (ft)"))
-        self.tblShotList.headerItem().setText(5, _translate("dlgSearch", "Club Speed (mph)"))
-        self.tblShotList.headerItem().setText(6, _translate("dlgSearch", "Ball Speed (mph)"))
+        self.tblShotList.headerItem().setText(2, _translate("dlgSearch", "Round"))
+        self.tblShotList.headerItem().setText(3, _translate("dlgSearch", "Hole"))
+        self.tblShotList.headerItem().setText(4, _translate("dlgSearch", "Distance (yds)"))
+        self.tblShotList.headerItem().setText(5, _translate("dlgSearch", "Apex (ft)"))
+        self.tblShotList.headerItem().setText(6, _translate("dlgSearch", "Club Speed (mph)"))
+        self.tblShotList.headerItem().setText(7, _translate("dlgSearch", "Ball Speed (mph)"))
         self.tblSelectedShots.headerItem().setText(0, _translate("dlgSearch", "Player"))
         self.tblSelectedShots.headerItem().setText(1, _translate("dlgSearch", "Tournament"))
-        self.tblSelectedShots.headerItem().setText(2, _translate("dlgSearch", "Round # / Hole #"))
-        self.tblSelectedShots.headerItem().setText(3, _translate("dlgSearch", "Distance (yds)"))
-        self.tblSelectedShots.headerItem().setText(4, _translate("dlgSearch", "Apex (ft)"))
-        self.tblSelectedShots.headerItem().setText(5, _translate("dlgSearch", "Club Speed (mph)"))
-        self.tblSelectedShots.headerItem().setText(6, _translate("dlgSearch", "Ball Speed (mph)"))
+        self.tblSelectedShots.headerItem().setText(2, _translate("dlgSearch", "Round"))
+        self.tblSelectedShots.headerItem().setText(3, _translate("dlgSearch", "Hole"))
+        self.tblSelectedShots.headerItem().setText(4, _translate("dlgSearch", "Distance (yds)"))
+        self.tblSelectedShots.headerItem().setText(5, _translate("dlgSearch", "Apex (ft)"))
+        self.tblSelectedShots.headerItem().setText(6, _translate("dlgSearch", "Club Speed (mph)"))
+        self.tblSelectedShots.headerItem().setText(7, _translate("dlgSearch", "Ball Speed (mph)"))
         self.groupBox_3.setTitle(_translate("dlgSearch", "Selected Shots"))
         self.btnRemoveShots.setText(_translate("dlgSearch", "Remove Selected Shots"))
         self.tblSelectedShots.setSortingEnabled(True)
@@ -121,7 +126,8 @@ class SearchDialog(object):
             item = [
                 str(shot["Player Last First"]),
                 str(shot["Tournament Name"]),
-                str(shot["Round"]) + ' / ' + str(shot["Hole Number"]),
+                str(shot["Round"]),
+                str(shot["Hole Number"]),
                 str(round((shot["Total Distance"] / 12) / 3, 1)),
                 str(round(shot["Apex Height"], 1)),
                 str(round(shot["Club Head Speed"], 1)),
@@ -134,44 +140,45 @@ class SearchDialog(object):
     def on_add_shots(self):
         items = self.tblShotList.selectedItems()
 
-        # add to selected
         for item in items:
             self.tblSelectedShots.addTopLevelItem(item.clone())
             self.tblShotList.takeTopLevelItem(self.tblShotList.indexOfTopLevelItem(item))
-
-        # TODO: remove from shots
-        #for i in range(len(indexes)):
-        #    self.tblShotList.takeTopLevelItem(indexes[i])
 
         self.tblShotList.clearSelection()
 
     def on_remove_shots(self):
         items = self.tblSelectedShots.selectedItems()
 
-        # TODO: add back to shots
-        # remove from selected
         for item in items:
             self.tblShotList.addTopLevelItem(item.clone())
             self.tblSelectedShots.takeTopLevelItem(self.tblSelectedShots.indexOfTopLevelItem(item))
 
-        self.tblShotList.sortByColumn(0)
+    def get_chosen_shots(self):
+        shots = []
+        for i in range(self.tblSelectedShots.topLevelItemCount()):
+            shot = {
+                'Player Last First': self.tblSelectedShots.topLevelItem(i).data(0, 0),
+                'Tournament Name': self.tblSelectedShots.topLevelItem(i).data(1, 0),
+                'Round': self.tblSelectedShots.topLevelItem(i).data(2, 0),
+                'Hole Number': self.tblSelectedShots.topLevelItem(i).data(3, 0)
+            }
+            shots.append(shot)
+        return shots
 
     def on_plot_2d(self):
-        # TODO: close dialog and open new dialog with plot, passing selected shots
-        #qt2DDialog = QtWidgets.QDialog()
-        #self.protracer2DDialog = dialog_protracer2d.ProTracer2DDialog()
-        #self.protracer2DDialog.setupUi(qt2DDialog)
-        #self.protracer2DDialog.set_shot_data(None) # TODO: get from tblSelectedShots
-        #self.protracer2DDialog.initialize()
-        #qt2DDialog.exec()
-        return None
+        qtDialog = QtWidgets.QDialog()
+        self.protracerDialog = dialog_protracer2d.ProTracer2DDialog()
+        self.protracerDialog.setupUi(qtDialog)
+        self.protracerDialog.set_shot_data(self.get_chosen_shots())
+        self.protracerDialog.initialize()
+        qtDialog.exec()
 
     def on_plot_3d(self):
         # TODO: close dialog and open new dialog with plot, passing selected shots
-        #qt3DDialog = QtWidgets.QDialog()
-        #self.protracer3DDialog = dialog_protracer2d.ProTracer3DDialog()
-        #self.protracer3DDialog.setupUi(qt3DDialog)
-        #self.protracer3DDialog.set_shot_data(None)  # TODO: get from tblSelectedShots
-        #self.protracer3DDialog.initialize()
-        #qt3DDialog.exec()
-        return Non
+        #qtDialog = QtWidgets.QDialog()
+        #self.protracerDialog = dialog_protracer3d.ProTracer3DDialog()
+        #self.protracerDialog.setupUi(qtDialog)
+        #self.protracerDialog.set_shot_data(self.get_chosen_shots())
+        #self.protracerDialog.initialize()
+        #qtDialog.exec()
+        return None

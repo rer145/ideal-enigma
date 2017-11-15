@@ -86,6 +86,26 @@ def get_all_shots(data):
 
     Returns a DataFrame of all unique shots in the data file.
     """
+
     return data.loc[
         (data["Trajectory Sequence"] == 1)
     ].sort_values(by=['Player Last Name', 'Player First Name', 'Tournament Name', 'Round', 'Hole Number'])
+
+
+def get_shot(data, golfer, tournament, round, hole, last_name_first=True):
+    """ (DataFrame, string, string, int, int, bool) -> DataFrame
+
+    Returns the full trajectory data for a shot.
+    """
+
+    if last_name_first:
+        col = "Player Last First"
+    else:
+        col = "Player Full Name"
+
+    return data.loc[
+        (data[col] == golfer) &
+        (data["Tournament Name"] == tournament) &
+        (data["Round"] == round) &
+        (data["Hole Number"] == hole)
+    ].sort_values(by=['Trajectory Sequence'])

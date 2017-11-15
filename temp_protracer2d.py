@@ -1,22 +1,17 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'ui\protracer2d.ui'
+#
+# Created by: PyQt5 UI code generator 5.6
+#
+# WARNING! All changes made in this file will be lost!
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-import os
-import pandas as pd
-import pt_data
-
-
-class ProTracer2DDialog(object):
-    def __init__(self):
-        self.shots = []
-
+class Ui_dlg2D(object):
     def setupUi(self, dlg2D):
-        self.dialog = dlg2D
-
         dlg2D.setObjectName("dlg2D")
         dlg2D.resize(800, 600)
-        dlg2D.setSizeGripEnabled(False)
-        dlg2D.setModal(True)
-
         self.groupBox = QtWidgets.QGroupBox(dlg2D)
         self.groupBox.setGeometry(QtCore.QRect(10, 10, 781, 141))
         self.groupBox.setObjectName("groupBox")
@@ -28,6 +23,9 @@ class ProTracer2DDialog(object):
         self.widget = QtWidgets.QWidget(self.tab)
         self.widget.setGeometry(QtCore.QRect(0, 0, 771, 401))
         self.widget.setObjectName("widget")
+        self.w_plot = QtWidgets.QWidget(self.widget)
+        self.w_plot.setGeometry(QtCore.QRect(10, 10, 761, 391))
+        self.w_plot.setObjectName("w_plot")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -37,8 +35,6 @@ class ProTracer2DDialog(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(dlg2D)
 
-        # Wire up event handlers
-
     def retranslateUi(self, dlg2D):
         _translate = QtCore.QCoreApplication.translate
         dlg2D.setWindowTitle(_translate("dlg2D", "PyProTracer 2D"))
@@ -46,14 +42,13 @@ class ProTracer2DDialog(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("dlg2D", "ProTracer"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("dlg2D", "Shot Stats"))
 
-    def set_shot_data(self, data):
-        self.shots = data
 
-    def initialize(self):
-        if len(self.shots) > 0:
-            # do work
-            QtWidgets.QMessageBox.information(QtWidgets.QWidget(), 'Chosen Shots', str(self.shots))
-        else:
-            QtWidgets.QMessageBox.information(
-                QtWidgets.QWidget(), 'Error Displaying ProTracer', 'There are no shots selected to show.')
-            self.dialog.done(0)
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    dlg2D = QtWidgets.QDialog()
+    ui = Ui_dlg2D()
+    ui.setupUi(dlg2D)
+    dlg2D.show()
+    sys.exit(app.exec_())
+
