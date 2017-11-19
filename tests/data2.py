@@ -98,7 +98,7 @@ def animate(i):
     temp = np.array(range(1, data.shape[0]+1))
     for lnum, line in enumerate(lines):
         line.set_data(x, data[:, temp[i]-1,i])
-    return tupe(lines)
+    return tuple(lines)
 
 #for i in list(range(plots)):
 #    data = np.array((x[i], z[i]))

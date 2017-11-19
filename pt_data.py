@@ -106,6 +106,6 @@ def get_shot(data, golfer, tournament, round, hole, last_name_first=True):
     return data.loc[
         (data[col] == golfer) &
         (data["Tournament Name"] == tournament) &
-        (data["Round"] == round) &
-        (data["Hole Number"] == hole)
+        (data["Round"] == int(round)) &
+        (data["Hole Number"] == int(hole))
     ].sort_values(by=['Trajectory Sequence'])

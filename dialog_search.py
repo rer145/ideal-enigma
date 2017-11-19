@@ -3,14 +3,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 import pandas as pd
 import pt_data
-
-import dialog_protracer2d
+import pt_plot
 
 
 class SearchDialog(object):
     def __init__(self):
         self.filename = ''
         self.data = pd.DataFrame()
+        self.pt = pt_plot.ProTracerPlot()
 
     def setupUi(self, dlgSearch):
         self.dialog = dlgSearch
@@ -18,7 +18,8 @@ class SearchDialog(object):
         dlgSearch.setObjectName("dlgSearch")
         dlgSearch.resize(800, 600)
         dlgSearch.setSizeGripEnabled(False)
-        dlgSearch.setModal(True)
+        # dlgSearch.setModal(True)
+        
         self.groupBox = QtWidgets.QGroupBox(dlgSearch)
         self.groupBox.setGeometry(QtCore.QRect(10, 10, 771, 241))
         self.groupBox.setObjectName("groupBox")
@@ -165,20 +166,57 @@ class SearchDialog(object):
             shots.append(shot)
         return shots
 
+    def add_shots_to_plot(self):
+        for shot in self.get_chosen_shots():
+            shot_data = pt_data.get_shot(self.data, shot["Player Last First"], shot["Tournament Name"],
+                                         shot["Round"], shot["Hole Number"])
+
+            # shot summary
+            summary = {}
+            summary["Player First Name"] = shot_data.iloc[0]["Player First Name"]
+            summary["Player Last Name"] = shot_data.iloc[0]["Player Last Name"]
+            summary["Player Full Name"] = shot_data.iloc[0]["Player Full Name"]
+            summary["Tournament Name"] = shot_data.iloc[0]["Tournament Name"]
+            summary["Round"] = shot_data.iloc[0]["Round"]
+            summary["Hole Number"] = shot_data.iloc[0]["Hole Number"]
+            summary["Club Head Speed"] = shot_data.iloc[0]["Club Head Speed"]
+            summary["Ball Speed"] = shot_data.iloc[0]["Ball Speed"]
+            summary["Smash Factor"] = shot_data.iloc[0]["Smash Factor"]
+            summary["Vertical Launch Angle"] = shot_data.iloc[0]["Vertical Launch Angle"]
+            summary["Apex Height"] = shot_data.iloc[0]["Apex Height"]
+            summary["Actual Flight Time"] = shot_data.iloc[0]["Actual Flight Time"]
+            summary["Actual Range"] = shot_data.iloc[0]["Actual Range"]
+            summary["Actual Height"] = shot_data.iloc[0]["Actual Height"]
+            summary["Distance of Impact"] = shot_data.iloc[0]["Distance of Impact"]
+            summary["Club"] = shot_data.iloc[0]["Club"]
+            summary["Total Distance"] = shot_data.iloc[0]["Total Distance"]
+            summary["Ending Location Description"] = shot_data.iloc[0]["Ending Location Description"]
+            summary["Weather"] = shot_data.iloc[0]["Weather"]
+            self.pt.add_plot_data(shot_data, summary)
+
     def on_plot_2d(self):
-        qtDialog = QtWidgets.QDialog()
-        self.protracerDialog = dialog_protracer2d.ProTracer2DDialog()
-        self.protracerDialog.setupUi(qtDialog)
-        self.protracerDialog.set_shot_data(self.get_chosen_shots())
-        self.protracerDialog.initialize()
-        qtDialog.exec()
+        self.add_shots_to_plot()
+        self.move_search_window(True)
+        plot = self.pt.plot_2d()
+        self.dialog.hide()
+        plot.show()
 
     def on_plot_3d(self):
-        # TODO: close dialog and open new dialog with plot, passing selected shots
-        #qtDialog = QtWidgets.QDialog()
-        #self.protracerDialog = dialog_protracer3d.ProTracer3DDialog()
-        #self.protracerDialog.setupUi(qtDialog)
-        #self.protracerDialog.set_shot_data(self.get_chosen_shots())
-        #self.protracerDialog.initialize()
-        #qtDialog.exec()
-        return None
+        self.add_shots_to_plot()
+        self.move_search_window(False)
+        self.pt.plot_3d()
+
+    def move_search_window(self, is_2d):
+        screen = QtWidgets.QDesktopWidget().screenGeometry()
+        widget = self.dialog.geometry()
+
+        if is_2d:
+            # Center horizontally and at the top of the screen
+            x = (screen.width() - widget.width()) / 2
+            y = 0
+        else:
+            # Centered vertically and to the left of the screen
+            x = 0
+            y = (screen.height() - widget.height()) / 2
+
+        self.dialog.move(x, y)

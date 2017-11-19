@@ -11,7 +11,7 @@ plot_padding = 25.0
 plot_linewidth = 8
 plot_aspect_size = 3
 
-data_file = 'traj-detail-2017-mickelson594296.TXT'
+data_file = '../data/traj-detail-2017-mickelson594296.TXT'
 
 max_plots = 4
 
