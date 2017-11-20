@@ -1,9 +1,17 @@
+# https://stackoverflow.com/questions/3972158/how-to-plot-on-my-gui
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
+# from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg as NavigationToolbar
+from matplotlib.figure import Figure
 
 import os
 import pandas as pd
 import pt_data
 import pt_plot
+
+import widget_mpl
 
 
 class SearchDialog(object):
@@ -167,6 +175,7 @@ class SearchDialog(object):
         return shots
 
     def add_shots_to_plot(self):
+        shots = []
         for shot in self.get_chosen_shots():
             shot_data = pt_data.get_shot(self.data, shot["Player Last First"], shot["Tournament Name"],
                                          shot["Round"], shot["Hole Number"])
@@ -192,14 +201,26 @@ class SearchDialog(object):
             summary["Total Distance"] = shot_data.iloc[0]["Total Distance"]
             summary["Ending Location Description"] = shot_data.iloc[0]["Ending Location Description"]
             summary["Weather"] = shot_data.iloc[0]["Weather"]
-            self.pt.add_plot_data(shot_data, summary)
+
+            shots.append((shot_data, summary))
+
+        return shots
 
     def on_plot_2d(self):
-        self.add_shots_to_plot()
-        self.move_search_window(True)
-        plot = self.pt.plot_2d()
-        self.dialog.hide()
-        plot.show()
+        self.ptdialog = widget_mpl.ProTracerDialog()
+        self.ptdialog.set_plot_data(self.add_shots_to_plot())
+        self.ptdialog.on_draw_2d()
+        self.ptdialog.exec()
+
+        #self.move_search_window(True)
+        #self.pt.plot_2d()
+
+        # qtdialog = QtWidgets.QDialog()
+        # self.protracerDialog = widget_mpl.ProTracerDialog()
+        # self.protracerDialog.setupUi(qtdialog)
+        # self.protracerDialog.set_protracer(self.pt)
+        # self.protracerDialog.plot()
+        # qtdialog.exec()
 
     def on_plot_3d(self):
         self.add_shots_to_plot()
