@@ -1,16 +1,18 @@
-# PyProTracer
+# ProTracer
 
-PyProTracer is an application built in Python 3.6.1 to visualize golf shot trajectories. This application was built for submission as Project #1 for DATA 520 at Mercyhurst University in the Fall 2017 term.
+ProTracer is an application built in Python 3.6.1 to visualize golf shot trajectories. This application was built for submission as Project #1 for DATA 520 at Mercyhurst University in the Fall 2017 term.
 
 ## ProTracer Examples
 
 Each television network that broadcasts a PGA Tour event (or other golf tours like the European Tour) has their own version of ProTracer.  The idea is still the same with each, show the path of a golfer's shot as it's travelling through the air. 
 
 ** Single Shot Example **
+
 ![alt text](resources/protracer-single.jpg)
 
 
-** Multiple Shot Example ** 
+** Multiple Shot Example **
+ 
 ![alt text](resources/protracer-multi.jpg)
 
 ## Shot Data
@@ -33,7 +35,7 @@ There are several other fields available, such as Club Head Speed, Launch Angle,
 ### Required Modules
 
 There are several Python modules required in order to run the application. 
-* PyGt5
+* PyQt5
 * Matplotlib
 * Pandas
 * Numpy
@@ -84,7 +86,8 @@ The protracer dialog is where the user will select the shots to visualize and se
 ![alt text](resources/app-protracer-dialog.png)
 
 #### Credits
-About Dialog image credit: [No Laying Up](http://www.nolayingup.com/)
+* About Dialog image credit: [No Laying Up](http://www.nolayingup.com/)
+* Trajectory Data: [PGA Tour](http://www.pgatour.com/)
 
 
 #### About the Author
