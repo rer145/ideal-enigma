@@ -11,7 +11,10 @@ import dialog_about
 import dialog_search
 
 
-class SplashWindow(object):
+class SplashWindow(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        super(SplashWindow, self).__init__(parent)
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)

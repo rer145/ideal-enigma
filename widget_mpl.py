@@ -1,5 +1,9 @@
 # http://scipy-cookbook.readthedocs.io/items/Matplotlib_Qt_with_IPython_and_Designer.html
 # https://github.com/eliben/code-for-blog/blob/master/2009/qt_mpl_bars.py
+# https://pythonspot.com/en/pyqt5-matplotlib/
+
+# https://stackoverflow.com/questions/29357442/example-of-embedding-matplotlib-in-pyqt5
+# 3d toolbar options not supported
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import matplotlib.pyplot as plt
@@ -10,14 +14,41 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
-import pt_plot
+# import matplotlib
+# matplotlib.use('QT5Agg')
+
+# import pt_plot
+import random
+
+
+class PlotCanvas(FigureCanvas):
+    def __init__(self, parent=None, width=5, height=4, dpi=100):
+        fig = Figure(figsize=(width, height), dpi=dpi)
+        self.axes = fig.add_subplot(111)
+
+        FigureCanvas.__init__(self, fig)
+        self.setParent(parent)
+
+        FigureCanvas.setSizePolicy(self,
+                                   QtWidgets.QSizePolicy.Expanding,
+                                   QtWidgets.QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
+
+    def plot(self):
+        data = [random.random() for i in range(25)]
+        ax = self.figure.add_subplot(111)
+        ax.plot(data, 'r-')
+        ax.set_title('PyQt Matplotlib Example')
+        self.draw()
+
 
 class ProTracerDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
         QtWidgets.QDialog.__init__(self, parent)
         self.setWindowTitle("ProTracer")
         self.resize(800, 600)
-        self.create_plot_widget()
+        # self.create_plot_widget()
+        self.canvas = PlotCanvas(self, width=8, height=6)
 
         self.padding = 25.0
         self.linewidth = 8
@@ -34,7 +65,9 @@ class ProTracerDialog(QtWidgets.QDialog):
         self.ymax = -1
         self.zmax = -1
 
+    '''
     def create_plot_widget(self):
+
         self.plot_widget = QtWidgets.QWidget()
         self.plot_widget.setObjectName("widget")
 
@@ -55,6 +88,7 @@ class ProTracerDialog(QtWidgets.QDialog):
         # self.setCentralWidget(self.plot_widget)
 
         QtCore.QMetaObject.connectSlotsByName(self)
+        '''
 
     def on_pick(self, event):
         return None
@@ -63,12 +97,22 @@ class ProTracerDialog(QtWidgets.QDialog):
         self.shots = shots
 
     def on_draw_2d(self):
+        # set up toolbar for 2D only
+        self.canvas.toolbar = NavigationToolbar(self.canvas, self.canvas)
+        self.canvas.toolbar.update()
+
         for i in range(len(self.shots)):
             self.add_plot_data(self.shots[i][0], self.shots[i][1])
 
-        self.ax.clear()
         self.plot_2d()
+        #self.canvas.plot()
 
+    def on_draw_3d(self):
+        for i in range(len(self.shots)):
+            self.add_plot_data(self.shots[i][0], self.shots[i][1])
+
+        self.plot_3d()
+        #self.canvas.plot()
 
     def adjust_coordinates(self, L):
         output = []
@@ -125,21 +169,81 @@ class ProTracerDialog(QtWidgets.QDialog):
         self.zmax += self.padding
         self.aspect_ratio = self.xmax // float(self.zmax)
 
-        self.fig = plt.figure(figsize=(self.aspect_ratio * self.aspect_size, self.aspect_size))
-        self.ax = plt.axes(xlim=(0, self.xmax), ylim=(0, self.zmax))
-        self.ax.set_title("ProTracer 2D")
+        self.canvas.figure = plt.figure(figsize=(self.aspect_ratio * self.aspect_size, self.aspect_size))
+        self.canvas.ax = plt.axes(xlim=(0, self.xmax), ylim=(0, self.zmax))
+        # self.canvas.ax.set_title("ProTracer 2D")
+
+        for i in range(len(self.data)):
+            self.canvas.ax.plot(self.data[i][0, :], self.data[i][2, :], linewidth=self.linewidth, label='Testing ' + str(i))
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        self.canvas.ax.legend(handles, labels)
+        self.canvas.draw()
+
+        '''
+        for i in range(len(self.data)):
+            label = '{0} - Round {1}'.format(
+                self.labels[i]["Player Last Name"],
+                self.labels[i]["Round"])
+            self.lines.append(self.canvas.ax.plot(self.data[i][0, 0:1], self.data[i][2, 0:1], linewidth=self.linewidth, label=label)[0])
+
+        ani = animation.FuncAnimation(self.canvas.figure, self.update_2d_lines, fargs=(self.data, self.lines),
+                                      interval=self.interval, blit=False, repeat=False, init_func=self.init_2d)
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        self.canvas.ax.legend(handles, labels)
+        self.canvas.draw()
+        # plt.axis('off')
+        # plt.show()
+        # self.canvas.draw()
+        '''
+
+    def init_3d(self):
+        for i in range(len(self.data)):
+            self.lines[i].set_data([], [], [])
+        return self.lines
+
+    def update_3d_lines(self, num, datas, lines):
+        for i in range(len(datas)):
+            lines[i].set_data(datas[i][0:2, :num])
+            lines[i].set_3d_properties(datas[i][2, :num])
+        return lines
+
+    def plot_3d(self):
+        self.xmax += self.padding
+        self.ymax += self.padding
+        self.zmax += self.padding
+        self.aspect_ratio = self.xmax // float(self.zmax)
+
+        self.canvas.figure = plt.figure()
+        self.canvas.ax = p3.Axes3D(self.canvas.figure)
+        # self.canvas.ax.set_title("ProTracer 3D")
+        self.canvas.ax.view_init(elev=0, azim=45)
+        # self.canvas.ax._axis3don = False
 
         for i in range(len(self.data)):
             label = '{0} - Round {1}'.format(
                 self.labels[i]["Player Last Name"],
                 self.labels[i]["Round"])
-            self.lines.append(self.ax.plot(self.data[i][0, 0:1], self.data[i][2, 0:1], linewidth=self.linewidth, label=label)[0])
 
-        ani = animation.FuncAnimation(self.fig, self.update_2d_lines, fargs=(self.data, self.lines),
-                                      interval=self.interval, blit=False, repeat=False, init_func=self.init_2d)
+            # self.lines.append(self.canvas.ax.plot(self.data[i][0, 0:1], self.data[i][1, 0:1], self.data[i][2, 0:1], linewidth=self.linewidth, label=label)[0])
+            self.canvas.ax.plot(self.data[i][0, :], self.data[i][1, :], self.data[i][2, :],
+                                linewidth=self.linewidth, label=label)
 
-        handles, labels = self.ax.get_legend_handles_labels()
-        self.ax.legend(handles, labels)
+            self.canvas.ax.set_xlim3d([0, self.xmax + self.padding])
+            self.canvas.ax.set_label('x')
+
+            self.canvas.ax.set_ylim3d([0, self.ymax + self.padding])
+            self.canvas.ax.set_label('y')
+
+            self.canvas.ax.set_zlim3d([0, self.zmax + self.padding])
+            self.canvas.ax.set_label('z')
+
+        #ani = animation.FuncAnimation(fig, self.update_3d_lines, self.data[0].shape[1], fargs=(self.data, self.lines),
+        #                              interval=self.interval, blit=False, repeat=False)
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        self.canvas.ax.legend(handles, labels)
+        self.canvas.draw()
         # plt.axis('off')
-        plt.show()
-        # self.canvas.draw()
+        # plt.show()

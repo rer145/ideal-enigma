@@ -8,6 +8,7 @@ pt = pt_plot.ProTracerPlot()
 data = pt_data.load_file('C:\\Users\\ronri\\OneDrive\\Mercyhurst\\DATA 520 - Intro to Programming\\projects\\ideal-enigma\\data\\traj-detail-2017771908.TXT')
 
 shots = []
+'''
 shots.append({
         'Player Last First': 'Mickelson, Phil',
         'Tournament Name': 'Safeway Open',
@@ -32,6 +33,7 @@ shots.append({
         'Round': 4,
         'Hole Number': 5
     })
+'''
 
 shots.append({
         'Player Last First': 'Thomas, Justin',

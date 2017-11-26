@@ -1,53 +1,27 @@
-# https://stackoverflow.com/questions/3972158/how-to-plot-on-my-gui
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-# from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg as NavigationToolbar
-from matplotlib.figure import Figure
-
-import os
 import pandas as pd
+import os
 import pt_data
 import pt_plot
-
 import widget_mpl
 
-
-class SearchDialog(object):
-    def __init__(self):
+class SearchWindow(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        super(SearchWindow, self).__init__(parent)
         self.filename = ''
         self.data = pd.DataFrame()
         self.pt = pt_plot.ProTracerPlot()
 
-    def setupUi(self, dlgSearch):
-        self.dialog = dlgSearch
-
-        dlgSearch.setObjectName("dlgSearch")
-        dlgSearch.resize(800, 600)
-        dlgSearch.setSizeGripEnabled(False)
-        # dlgSearch.setModal(True)
-        
-        self.groupBox = QtWidgets.QGroupBox(dlgSearch)
-        self.groupBox.setGeometry(QtCore.QRect(10, 10, 771, 241))
-        self.groupBox.setObjectName("groupBox")
-        self.btnAddShots = QtWidgets.QPushButton(self.groupBox)
-        self.btnAddShots.setGeometry(QtCore.QRect(10, 200, 141, 31))
-        self.btnAddShots.setObjectName("btnAddShots")
-        self.tblShotList = QtWidgets.QTreeWidget(self.groupBox)
-        self.tblShotList.setGeometry(QtCore.QRect(10, 20, 751, 171))
-        self.tblShotList.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.tblShotList.setProperty("showDropIndicator", False)
-        self.tblShotList.setAlternatingRowColors(True)
-        self.tblShotList.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
-        self.tblShotList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.tblShotList.setColumnCount(9)
-        self.tblShotList.setObjectName("tblShotList")
-        self.tblShotList.AdjustToContentsOnFirstShow = True
-        self.tblShotList.setUpdatesEnabled(True)
-        self.tblShotList.setColumnHidden(8, True)
-        self.groupBox_3 = QtWidgets.QGroupBox(dlgSearch)
-        self.groupBox_3.setGeometry(QtCore.QRect(10, 280, 771, 241))
+    def setupUi(self, windowSearch):
+        windowSearch.setObjectName("windowSearch")
+        windowSearch.resize(800, 600)
+        self.centralwidget = QtWidgets.QWidget(windowSearch)
+        self.centralwidget.setObjectName("centralwidget")
+        self.btn3D = QtWidgets.QPushButton(self.centralwidget)
+        self.btn3D.setGeometry(QtCore.QRect(420, 520, 141, 31))
+        self.btn3D.setObjectName("btn3D")
+        self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox_3.setGeometry(QtCore.QRect(9, 254, 782, 238))
         self.groupBox_3.setObjectName("groupBox_3")
         self.btnRemoveShots = QtWidgets.QPushButton(self.groupBox_3)
         self.btnRemoveShots.setGeometry(QtCore.QRect(10, 200, 141, 31))
@@ -59,20 +33,65 @@ class SearchDialog(object):
         self.tblSelectedShots.setAlternatingRowColors(True)
         self.tblSelectedShots.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.tblSelectedShots.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.tblSelectedShots.setColumnCount(9)
+        self.tblSelectedShots.setColumnCount(7)
         self.tblSelectedShots.setObjectName("tblSelectedShots")
-        self.tblSelectedShots.AdjustToContentsOnFirstShow = True
-        self.tblSelectedShots.setUpdatesEnabled(True)
-        self.tblSelectedShots.setColumnHidden(8, True)
-        self.btn2D = QtWidgets.QPushButton(dlgSearch)
-        self.btn2D.setGeometry(QtCore.QRect(210, 540, 181, 41))
+        self.tblSelectedShots.headerItem().setText(1, "Tournament")
+        self.tblSelectedShots.headerItem().setText(2, "Round # / Hole #")
+        self.tblSelectedShots.headerItem().setText(3, "Distance (yds)")
+        self.tblSelectedShots.headerItem().setText(4, "Club Speed (mph)")
+        self.tblSelectedShots.headerItem().setText(5, "Ball Speed (mph)")
+        self.tblSelectedShots.headerItem().setText(6, "Launch Angle (deg)")
+        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox.setGeometry(QtCore.QRect(9, 9, 782, 239))
+        self.groupBox.setObjectName("groupBox")
+        self.btnAddShots = QtWidgets.QPushButton(self.groupBox)
+        self.btnAddShots.setGeometry(QtCore.QRect(10, 200, 141, 31))
+        self.btnAddShots.setObjectName("btnAddShots")
+        self.tblShotList = QtWidgets.QTreeWidget(self.groupBox)
+        self.tblShotList.setGeometry(QtCore.QRect(10, 20, 751, 171))
+        self.tblShotList.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tblShotList.setProperty("showDropIndicator", False)
+        self.tblShotList.setAlternatingRowColors(True)
+        self.tblShotList.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.tblShotList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tblShotList.setColumnCount(7)
+        self.tblShotList.setObjectName("tblShotList")
+        self.tblShotList.headerItem().setText(2, "Round # / Hole #")
+        self.btn2D = QtWidgets.QPushButton(self.centralwidget)
+        self.btn2D.setGeometry(QtCore.QRect(210, 520, 141, 31))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn2D.sizePolicy().hasHeightForWidth())
+        self.btn2D.setSizePolicy(sizePolicy)
         self.btn2D.setObjectName("btn2D")
-        self.btn3D = QtWidgets.QPushButton(dlgSearch)
-        self.btn3D.setGeometry(QtCore.QRect(420, 540, 181, 41))
-        self.btn3D.setObjectName("btn3D")
+        windowSearch.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(windowSearch)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        self.menuFile = QtWidgets.QMenu(self.menubar)
+        self.menuFile.setObjectName("menuFile")
+        self.menuHelp = QtWidgets.QMenu(self.menubar)
+        self.menuHelp.setObjectName("menuHelp")
+        windowSearch.setMenuBar(self.menubar)
+        self.actionLoad_Demo_File = QtWidgets.QAction(windowSearch)
+        self.actionLoad_Demo_File.setObjectName("actionLoad_Demo_File")
+        self.actionOpen_Data_File = QtWidgets.QAction(windowSearch)
+        self.actionOpen_Data_File.setObjectName("actionOpen_Data_File")
+        self.actionAbout = QtWidgets.QAction(windowSearch)
+        self.actionAbout.setObjectName("actionAbout")
+        self.actionExit = QtWidgets.QAction(windowSearch)
+        self.actionExit.setObjectName("actionExit")
+        self.menuFile.addAction(self.actionLoad_Demo_File)
+        self.menuFile.addAction(self.actionOpen_Data_File)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionExit)
+        self.menuHelp.addAction(self.actionAbout)
+        self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuHelp.menuAction())
 
-        self.retranslateUi(dlgSearch)
-        QtCore.QMetaObject.connectSlotsByName(dlgSearch)
+        self.retranslateUi(windowSearch)
+        QtCore.QMetaObject.connectSlotsByName(windowSearch)
 
         # Wire up event handlers
         self.btnAddShots.clicked.connect(self.on_add_shots)
@@ -80,33 +99,30 @@ class SearchDialog(object):
         self.btn2D.clicked.connect(self.on_plot_2d)
         self.btn3D.clicked.connect(self.on_plot_3d)
 
-    def retranslateUi(self, dlgSearch):
+    def retranslateUi(self, windowSearch):
         _translate = QtCore.QCoreApplication.translate
-        dlgSearch.setWindowTitle(_translate("dlgSearch", "ProTracer Shot Search"))
-        self.groupBox.setTitle(_translate("dlgSearch", "Shot List"))
-        self.btnAddShots.setText(_translate("dlgSearch", "Add Selected Shots"))
-        self.tblShotList.setSortingEnabled(True)
-        self.tblShotList.headerItem().setText(0, _translate("dlgSearch", "Player"))
-        self.tblShotList.headerItem().setText(1, _translate("dlgSearch", "Tournament"))
-        self.tblShotList.headerItem().setText(2, _translate("dlgSearch", "Round"))
-        self.tblShotList.headerItem().setText(3, _translate("dlgSearch", "Hole"))
-        self.tblShotList.headerItem().setText(4, _translate("dlgSearch", "Distance (yds)"))
-        self.tblShotList.headerItem().setText(5, _translate("dlgSearch", "Apex (ft)"))
-        self.tblShotList.headerItem().setText(6, _translate("dlgSearch", "Club Speed (mph)"))
-        self.tblShotList.headerItem().setText(7, _translate("dlgSearch", "Ball Speed (mph)"))
-        self.tblSelectedShots.headerItem().setText(0, _translate("dlgSearch", "Player"))
-        self.tblSelectedShots.headerItem().setText(1, _translate("dlgSearch", "Tournament"))
-        self.tblSelectedShots.headerItem().setText(2, _translate("dlgSearch", "Round"))
-        self.tblSelectedShots.headerItem().setText(3, _translate("dlgSearch", "Hole"))
-        self.tblSelectedShots.headerItem().setText(4, _translate("dlgSearch", "Distance (yds)"))
-        self.tblSelectedShots.headerItem().setText(5, _translate("dlgSearch", "Apex (ft)"))
-        self.tblSelectedShots.headerItem().setText(6, _translate("dlgSearch", "Club Speed (mph)"))
-        self.tblSelectedShots.headerItem().setText(7, _translate("dlgSearch", "Ball Speed (mph)"))
-        self.groupBox_3.setTitle(_translate("dlgSearch", "Selected Shots"))
-        self.btnRemoveShots.setText(_translate("dlgSearch", "Remove Selected Shots"))
+        windowSearch.setWindowTitle(_translate("windowSearch", "ProTracer Shot Search"))
+        self.btn3D.setText(_translate("windowSearch", "ProTracer 3D"))
+        self.groupBox_3.setTitle(_translate("windowSearch", "Selected Shots"))
+        self.btnRemoveShots.setText(_translate("windowSearch", "Remove Selected Shots"))
         self.tblSelectedShots.setSortingEnabled(True)
-        self.btn2D.setText(_translate("dlgSearch", "ProTracer 2D"))
-        self.btn3D.setText(_translate("dlgSearch", "ProTracer 3D"))
+        self.tblSelectedShots.headerItem().setText(0, _translate("windowSearch", "Player"))
+        self.groupBox.setTitle(_translate("windowSearch", "Shot List"))
+        self.btnAddShots.setText(_translate("windowSearch", "Add Selected Shots"))
+        self.tblShotList.setSortingEnabled(True)
+        self.tblShotList.headerItem().setText(0, _translate("windowSearch", "Player"))
+        self.tblShotList.headerItem().setText(1, _translate("windowSearch", "Tournament"))
+        self.tblShotList.headerItem().setText(3, _translate("windowSearch", "Distance (yds)"))
+        self.tblShotList.headerItem().setText(4, _translate("windowSearch", "Club Speed (mph)"))
+        self.tblShotList.headerItem().setText(5, _translate("windowSearch", "Ball Speed (mph)"))
+        self.tblShotList.headerItem().setText(6, _translate("windowSearch", "Launch Angle (deg)"))
+        self.btn2D.setText(_translate("windowSearch", "ProTracer 2D"))
+        self.menuFile.setTitle(_translate("windowSearch", "File"))
+        self.menuHelp.setTitle(_translate("windowSearch", "Help"))
+        self.actionLoad_Demo_File.setText(_translate("windowSearch", "Load Demo File"))
+        self.actionOpen_Data_File.setText(_translate("windowSearch", "Open Data File"))
+        self.actionAbout.setText(_translate("windowSearch", "About"))
+        self.actionExit.setText(_translate("windowSearch", "Exit"))
 
     def set_filename(self, filename):
         self.filename = filename
@@ -223,14 +239,9 @@ class SearchDialog(object):
         # qtdialog.exec()
 
     def on_plot_3d(self):
-        self.ptdialog = widget_mpl.ProTracerDialog()
-        self.ptdialog.set_plot_data(self.add_shots_to_plot())
-        self.ptdialog.on_draw_3d()
-        self.ptdialog.exec()
-
-        # self.add_shots_to_plot()
-        # self.move_search_window(False)
-        # self.pt.plot_3d()
+        self.add_shots_to_plot()
+        self.move_search_window(False)
+        self.pt.plot_3d()
 
     def move_search_window(self, is_2d):
         screen = QtWidgets.QDesktopWidget().screenGeometry()
