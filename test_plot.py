@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 import pt_plot
 import pt_data
 
@@ -91,8 +89,3 @@ for shot in shots:
 
 # pt.plot_2d()
 pt.plot_3d()
-
-
-#import widget_mpl
-#x = widget_mpl.ProTracerDialog()
-#x.show()

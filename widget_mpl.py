@@ -47,7 +47,10 @@ class ProTracerDialog(QtWidgets.QDialog):
         QtWidgets.QDialog.__init__(self, parent)
         self.setWindowTitle("ProTracer")
         self.resize(800, 600)
-        # self.create_plot_widget()
+
+        screen = QtWidgets.QDesktopWidget().availableGeometry()
+        self.setGeometry(screen.width() - self.width(), 100, self.width(), self.height())
+
         self.canvas = PlotCanvas(self, width=8, height=6)
 
         self.padding = 25.0
@@ -154,14 +157,43 @@ class ProTracerDialog(QtWidgets.QDialog):
         self.extrapolated.append(extrapolated)
 
     def init_2d(self):
+        self.canvas.ax.clear()
         for i in range(len(self.data)):
-            self.lines[i].set_data([], [])
-        return self.lines
+            # self.lines[i].set_data([], [])
+            x = self.data[i][0, 0:1]
+            y = self.data[i][2, 0:1]
+
+            label = '{0} - Round {1}'.format(
+                self.labels[i]["Player Last Name"],
+                self.labels[i]["Round"])
+
+            self.canvas.ax.plot(x, y, linewidth=self.linewidth, label=label)
+        # return self.lines
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        # self.canvas.ax.legend(handles, labels)
+        self.canvas.draw()
 
     def update_2d_lines(self, num, datas, lines):
+        '''
         for i in range(len(datas)):
             self.lines[i].set_data(datas[i][0, :num], datas[i][2, :num])
         return self.lines
+        '''
+        self.canvas.ax.clear()
+        for i in range(len(self.data)):
+            x = self.data[i][0, :num]
+            y = self.data[i][2, :num]
+
+            label = '{0} - Round {1}'.format(
+                self.labels[i]["Player Last Name"],
+                self.labels[i]["Round"])
+
+            self.canvas.ax.plot(x, y, linewidth=self.linewidth, label=label)
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        self.canvas.ax.legend(handles, labels)
+        self.canvas.draw()
 
     def plot_2d(self):
         self.xmax += self.padding
@@ -171,21 +203,25 @@ class ProTracerDialog(QtWidgets.QDialog):
 
         self.canvas.figure = plt.figure(figsize=(self.aspect_ratio * self.aspect_size, self.aspect_size))
         self.canvas.ax = plt.axes(xlim=(0, self.xmax), ylim=(0, self.zmax))
+        self.canvas.ax.get_xaxis().set_visible(False)
+        self.canvas.ax.get_yaxis().set_visible(False)
         # self.canvas.ax.set_title("ProTracer 2D")
 
+        '''
         for i in range(len(self.data)):
             self.canvas.ax.plot(self.data[i][0, :], self.data[i][2, :], linewidth=self.linewidth, label='Testing ' + str(i))
 
         handles, labels = self.canvas.ax.get_legend_handles_labels()
         self.canvas.ax.legend(handles, labels)
         self.canvas.draw()
-
         '''
-        for i in range(len(self.data)):
-            label = '{0} - Round {1}'.format(
-                self.labels[i]["Player Last Name"],
-                self.labels[i]["Round"])
-            self.lines.append(self.canvas.ax.plot(self.data[i][0, 0:1], self.data[i][2, 0:1], linewidth=self.linewidth, label=label)[0])
+
+
+        #for i in range(len(self.data)):
+        #    label = '{0} - Round {1}'.format(
+        #        self.labels[i]["Player Last Name"],
+        #        self.labels[i]["Round"])
+        #    self.lines.append(self.canvas.ax.plot(self.data[i][0, 0:1], self.data[i][2, 0:1], linewidth=self.linewidth, label=label)[0])
 
         ani = animation.FuncAnimation(self.canvas.figure, self.update_2d_lines, fargs=(self.data, self.lines),
                                       interval=self.interval, blit=False, repeat=False, init_func=self.init_2d)
@@ -193,21 +229,52 @@ class ProTracerDialog(QtWidgets.QDialog):
         handles, labels = self.canvas.ax.get_legend_handles_labels()
         self.canvas.ax.legend(handles, labels)
         self.canvas.draw()
-        # plt.axis('off')
-        # plt.show()
-        # self.canvas.draw()
-        '''
+
 
     def init_3d(self):
+        self.canvas.ax.clear()
         for i in range(len(self.data)):
-            self.lines[i].set_data([], [], [])
-        return self.lines
+            # self.lines[i].set_data([], [])
+            x = self.data[i][0, 0:1]
+            y = self.data[i][1, 0:1]
+            z = self.data[i][2, 0:1]
+
+            label = '{0} - Round {1}'.format(
+                self.labels[i]["Player Last Name"],
+                self.labels[i]["Round"])
+
+            self.canvas.ax.plot(x, y, z, linewidth=self.linewidth, label=label)
+        # return self.lines
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        # self.canvas.ax.legend(handles, labels)
+        self.canvas.draw()
 
     def update_3d_lines(self, num, datas, lines):
-        for i in range(len(datas)):
-            lines[i].set_data(datas[i][0:2, :num])
-            lines[i].set_3d_properties(datas[i][2, :num])
-        return lines
+        #for i in range(len(datas)):
+        #    lines[i].set_data(datas[i][0:2, :num])
+        #    lines[i].set_3d_properties(datas[i][2, :num])
+        #return lines
+        self.canvas.ax.clear()
+        for i in range(len(self.data)):
+            x = self.data[i][0, :num]
+            y = self.data[i][1, :num]
+            z = self.data[i][2, :num]
+
+            label = '{0} - Round {1}'.format(
+                self.labels[i]["Player Last Name"],
+                self.labels[i]["Round"])
+
+            self.canvas.ax.plot(x, y, z, linewidth=self.linewidth, label=label)
+
+        handles, labels = self.canvas.ax.get_legend_handles_labels()
+        self.canvas.ax.legend(handles, labels)
+
+        self.canvas.ax.set_xlim3d([0, self.xmax + self.padding])
+        self.canvas.ax.set_ylim3d([0, self.ymax + self.padding])
+        self.canvas.ax.set_zlim3d([0, self.zmax + self.padding])
+
+        self.canvas.draw()
 
     def plot_3d(self):
         self.xmax += self.padding
@@ -221,6 +288,7 @@ class ProTracerDialog(QtWidgets.QDialog):
         self.canvas.ax.view_init(elev=0, azim=45)
         # self.canvas.ax._axis3don = False
 
+        '''
         for i in range(len(self.data)):
             label = '{0} - Round {1}'.format(
                 self.labels[i]["Player Last Name"],
@@ -238,9 +306,10 @@ class ProTracerDialog(QtWidgets.QDialog):
 
             self.canvas.ax.set_zlim3d([0, self.zmax + self.padding])
             self.canvas.ax.set_label('z')
+        '''
 
-        #ani = animation.FuncAnimation(fig, self.update_3d_lines, self.data[0].shape[1], fargs=(self.data, self.lines),
-        #                              interval=self.interval, blit=False, repeat=False)
+        ani = animation.FuncAnimation(self.canvas.figure, self.update_3d_lines, self.data[0].shape[1], fargs=(self.data, self.lines),
+                                      interval=self.interval, blit=False, repeat=False)
 
         handles, labels = self.canvas.ax.get_legend_handles_labels()
         self.canvas.ax.legend(handles, labels)

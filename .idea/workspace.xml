@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bbfe53b2-337d-4f46-a2ac-0fe93b1d7cd1" name="Default" comment="" />
+    <list default="true" id="bbfe53b2-337d-4f46-a2ac-0fe93b1d7cd1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/live-2d.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dialog_search.py" afterPath="$PROJECT_DIR$/dialog_search.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_plot.py" afterPath="$PROJECT_DIR$/test_plot.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/widget_mpl.py" afterPath="$PROJECT_DIR$/widget_mpl.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,10 +22,10 @@
           <file leaf-file-name="test_plot.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test_plot.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-578">
-                  <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding>
-                    <element signature="e#0#18#0" expanded="true" />
+                    <element signature="e#0#14#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -28,8 +34,8 @@
           <file leaf-file-name="widget_mpl.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/widget_mpl.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-952">
-                  <caret line="100" column="73" lean-forward="true" selection-start-line="100" selection-start-column="73" selection-end-line="100" selection-end-column="73" />
+                <state relative-caret-position="408">
+                  <caret line="24" column="64" lean-forward="true" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
                   <folding>
                     <element signature="e#335#377#0" expanded="true" />
                   </folding>
@@ -44,33 +50,11 @@
           <file leaf-file-name="dialog_search.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/dialog_search.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1436">
-                  <caret line="212" column="28" lean-forward="true" selection-start-line="212" selection-start-column="28" selection-end-line="212" selection-end-column="28" />
+                <state relative-caret-position="196">
+                  <caret line="210" column="40" lean-forward="false" selection-start-line="210" selection-start-column="40" selection-end-line="210" selection-end-column="40" />
                   <folding>
                     <element signature="e#69#111#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="pt_plot.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pt_plot.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="107">
-                  <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="matplot-animation.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tests/matplot-animation.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -118,12 +102,13 @@
         <option value="$PROJECT_DIR$/pt_plot.py" />
         <option value="$PROJECT_DIR$/mplwidget.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_15.py" />
-        <option value="$PROJECT_DIR$/test_plot.py" />
         <option value="$PROJECT_DIR$/window_search.py" />
         <option value="$PROJECT_DIR$/window_main.py" />
         <option value="$PROJECT_DIR$/tests/mpl.py" />
+        <option value="$PROJECT_DIR$/tests/live-2d.py" />
         <option value="$PROJECT_DIR$/dialog_search.py" />
         <option value="$PROJECT_DIR$/widget_mpl.py" />
+        <option value="$PROJECT_DIR$/test_plot.py" />
       </list>
     </option>
   </component>
@@ -197,7 +182,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.mpl">
+  <component name="RunManager" selected="Python.test_plot">
+    <configuration name="live-2d" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ideal-enigma" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/live-2d.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration name="matplot-animation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -266,37 +268,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="widget_mpl" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ideal-enigma" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/widget_mpl.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.test_plot" />
       <item index="1" class="java.lang.String" itemvalue="Python.matplot-animation" />
-      <item index="2" class="java.lang.String" itemvalue="Python.widget_mpl" />
-      <item index="3" class="java.lang.String" itemvalue="Python.scratch_15" />
-      <item index="4" class="java.lang.String" itemvalue="Python.mpl" />
+      <item index="2" class="java.lang.String" itemvalue="Python.scratch_15" />
+      <item index="3" class="java.lang.String" itemvalue="Python.mpl" />
+      <item index="4" class="java.lang.String" itemvalue="Python.live-2d" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.mpl" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_plot" />
-        <item index="2" class="java.lang.String" itemvalue="Python.matplot-animation" />
-        <item index="3" class="java.lang.String" itemvalue="Python.scratch_15" />
-        <item index="4" class="java.lang.String" itemvalue="Python.widget_mpl" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_plot" />
+        <item index="1" class="java.lang.String" itemvalue="Python.live-2d" />
+        <item index="2" class="java.lang.String" itemvalue="Python.mpl" />
+        <item index="3" class="java.lang.String" itemvalue="Python.matplot-animation" />
+        <item index="4" class="java.lang.String" itemvalue="Python.scratch_15" />
       </list>
     </recent_temporary>
   </component>
@@ -358,16 +343,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pt_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
-          <caret line="106" column="31" lean-forward="true" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1654">
@@ -401,7 +376,7 @@
         <state relative-caret-position="-1020">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -487,7 +462,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -653,20 +628,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-578">
-          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/mpl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/live-2d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="65" column="51" lean-forward="true" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
+          <folding>
+            <element signature="e#546#556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/matplot-animation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -681,28 +664,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/matplot-animation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dialog_search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1436">
-          <caret line="212" column="28" lean-forward="true" selection-start-line="212" selection-start-column="28" selection-end-line="212" selection-end-column="28" />
+        <state relative-caret-position="196">
+          <caret line="210" column="40" lean-forward="false" selection-start-line="210" selection-start-column="40" selection-end-line="210" selection-end-column="40" />
           <folding>
             <element signature="e#69#111#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/widget_mpl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-952">
-          <caret line="100" column="73" lean-forward="true" selection-start-line="100" selection-start-column="73" selection-end-line="100" selection-end-column="73" />
+        <state relative-caret-position="408">
+          <caret line="24" column="64" lean-forward="true" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
           <folding>
             <element signature="e#335#377#0" expanded="true" />
           </folding>
