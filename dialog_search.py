@@ -1,10 +1,4 @@
-# https://stackoverflow.com/questions/3972158/how-to-plot-on-my-gui
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-# from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg as NavigationToolbar
-from matplotlib.figure import Figure
 
 import os
 import pandas as pd
@@ -208,81 +202,15 @@ class SearchDialog(object):
 
     def on_plot_2d(self):
         # self.move_search_dialog()
-        self.dialog.setGeometry(100, 100, 800, 600)
+        self.dialog.setGeometry(0, 100, self.dialog.width(), self.dialog.height())
         self.ptdialog = widget_mpl.ProTracerDialog()
         self.ptdialog.set_plot_data(self.add_shots_to_plot())
         self.ptdialog.on_draw_2d()
         self.ptdialog.exec()
-        # self.move_protracer_dialog()
-
-        # self.move_windows(self.dialog, self.ptdialog)
-
-        #self.move_search_window(True)
-        #self.pt.plot_2d()
-
-        # qtdialog = QtWidgets.QDialog()
-        # self.protracerDialog = widget_mpl.ProTracerDialog()
-        # self.protracerDialog.setupUi(qtdialog)
-        # self.protracerDialog.set_protracer(self.pt)
-        # self.protracerDialog.plot()
-        # qtdialog.exec()
 
     def on_plot_3d(self):
+        self.dialog.setGeometry(0, 100, self.dialog.width(), self.dialog.height())
         self.ptdialog = widget_mpl.ProTracerDialog()
         self.ptdialog.set_plot_data(self.add_shots_to_plot())
         self.ptdialog.on_draw_3d()
         self.ptdialog.exec()
-
-        # self.move_windows(self.dialog, self.ptdialog)
-
-        # self.add_shots_to_plot()
-        # self.move_search_window(False)
-        # self.pt.plot_3d()
-
-    def move_search_dialog(self):
-        screen = QtWidgets.QDesktopWidget().screenGeometry()
-        geom = self.dialog.geometry()
-
-        # Keep same vertical position
-        # Move left half the width of the dialog
-        x = (screen.width() - (geom.width() / 2)) // 2
-        y = (screen.height() - geom.height()) // 2
-        self.dialog.move(x, y)
-
-    def move_protracer_dialog(self):
-        screen = QtWidgets.QDesktopWidget().screenGeometry()
-        geom = self.ptdialog.geometry()
-
-        # Keep same vertical position
-        # Move right half the width of the dialog
-        x = (screen.width() - (geom.width() / 2)) // 2
-        y = (screen.height() + geom.height()) // 2
-
-        self.ptdialog.move(x, y)
-
-    def move_windows(self, dialog, ptdialog):
-        screen = QtWidgets.QDesktopWidget().screenGeometry()
-        dgeom = dialog.geometry()
-        ptgeom = ptdialog.geometry()
-
-        y = (screen.height() - dgeom.height()) / 2
-        x = (screen.width() - (dgeom.width()/2)) / 2
-        dialog.move(x, y)
-
-        x = (screen.width() + (ptgeom.width() / 2)) / 2
-        ptdialog.move(x, y)
-
-    def move_search_window(self, is_2d):
-        screen = QtWidgets.QDesktopWidget().screenGeometry()
-        widget = self.dialog.geometry()
-
-        if is_2d:
-            # Center horizontally and at the top of the screen
-            x = (screen.width() - widget.width()) / 2
-            y = 0
-        else:
-            # Centered vertically and to the left of the screen
-            x = 0
-            y = (screen.height() - widget.height()) / 2
-
-        self.dialog.move(x, y)

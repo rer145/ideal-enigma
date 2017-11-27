@@ -41,10 +41,10 @@ class AboutDialog(object):
 
     def retranslateUi(self, dlgAbout):
         _translate = QtCore.QCoreApplication.translate
-        dlgAbout.setWindowTitle(_translate("dlgAbout", "About PyProTracer"))
-        self.label.setText(_translate("dlgAbout", "PyProTracer"))
+        dlgAbout.setWindowTitle(_translate("dlgAbout", "About ProTracer"))
+        self.label.setText(_translate("dlgAbout", "ProTracer"))
         self.label_2.setText(_translate("dlgAbout", "Version: 1.0.0.0"))
-        self.label_3.setText(_translate("dlgAbout", "PyProTracer is designed to visualize PGA Tour Trajectory data, mimicing television broadcasts."))
+        self.label_3.setText(_translate("dlgAbout", "ProTracer is designed to visualize PGA Tour Trajectory data, mimicing television broadcasts."))
         self.label_4.setText(_translate("dlgAbout", "Developed by Ron Richardson"))
         self.btnCloseAbout.setText(_translate("dlgAbout", "Close"))
         self.label_5.setText(_translate("dlgAbout", "<html><head/><body><p><img src=\":/logo/logo-about.png\"/></p></body></html>"))
