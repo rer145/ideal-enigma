@@ -6,12 +6,12 @@ ProTracer is an application built in Python 3.6.1 to visualize golf shot traject
 
 Each television network that broadcasts a PGA Tour event (or other golf tours like the European Tour) has their own version of ProTracer.  The idea is still the same with each, show the path of a golfer's shot as it's travelling through the air. 
 
-** Single Shot Example **
+**Single Shot Example**
 
 ![alt text](resources/protracer-single.jpg)
 
 
-** Multiple Shot Example **
+**Multiple Shot Example**
  
 ![alt text](resources/protracer-multi.jpg)
 
@@ -81,9 +81,21 @@ The about dialog shows the user the current build information, developer, and a 
 
 ### ProTracer Dialog
 
-The protracer dialog is where the user will select the shots to visualize and see statisical data for the shot(s).
+The protracer dialog is where the user will select the shots to visualize and see statistical data for the shot(s).
 
 ![alt text](resources/app-protracer-dialog.png)
+
+### ProTracer 2D Plot
+
+The 2D plot is a simple animated line chart of the shots selected.
+
+![alt text](resources/protracer-2d.gif)
+
+### ProTracer 3D Plot
+
+The 3D plot is a simple animated 3D line chart of the shots selected. Normally, when viewing a 3D plot, using the mouse can change the rotation of the elevation and azimuth of the plot. However, when embedded in a GUI like this, that ability seemingly is not possible.
+
+![alt text](resources/protracer-3d.gif)
 
 #### Credits
 * About Dialog image credit: [No Laying Up](http://www.nolayingup.com/)

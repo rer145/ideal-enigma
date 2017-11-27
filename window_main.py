@@ -56,17 +56,15 @@ class SplashWindow(QtWidgets.QMainWindow):
         self.btnDemoFile.clicked.connect(self.load_demo_file)
         self.btnSelectFile.clicked.connect(self.select_file)
 
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "PyProTracer"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ProTracer"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p><img src=\":/logo/logo.jpg\"/></p></body></html>"))
         self.btnSelectFile.setText(_translate("MainWindow", "Select Data File"))
         self.btnDemoFile.setText(_translate("MainWindow", "Use Demo File"))
         self.btnAbout.setText(_translate("MainWindow", "About"))
         self.btnQuit.setText(_translate("MainWindow", "Quit"))
-        self.label_2.setText(_translate("MainWindow", "PyProTracer"))
-
+        self.label_2.setText(_translate("MainWindow", "ProTracer"))
 
     # Event Handlers
     def show_about_dialog(self):

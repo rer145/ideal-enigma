@@ -53,7 +53,6 @@ class ProTracerDialog(QtWidgets.QDialog):
         self.labels = []
         self.extrapolated = []
         self.lines = []
-        self.shots = []
 
         self.xmax = -1
         self.ymax = -1
