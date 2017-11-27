@@ -203,14 +203,14 @@ class SearchDialog(object):
     def on_plot_2d(self):
         # self.move_search_dialog()
         self.dialog.setGeometry(0, 100, self.dialog.width(), self.dialog.height())
-        self.ptdialog = widget_mpl.ProTracerDialog()
+        self.ptdialog = widget_mpl.ProTracerDialog(True)
         self.ptdialog.set_plot_data(self.add_shots_to_plot())
         self.ptdialog.on_draw_2d()
         self.ptdialog.exec()
 
     def on_plot_3d(self):
         self.dialog.setGeometry(0, 100, self.dialog.width(), self.dialog.height())
-        self.ptdialog = widget_mpl.ProTracerDialog()
+        self.ptdialog = widget_mpl.ProTracerDialog(False)
         self.ptdialog.set_plot_data(self.add_shots_to_plot())
         self.ptdialog.on_draw_3d()
         self.ptdialog.exec()

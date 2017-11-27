@@ -18,8 +18,9 @@ from matplotlib.figure import Figure
 import matplotlib
 matplotlib.use('QT5Agg')
 
+
 class PlotCanvas(FigureCanvas):
-    def __init__(self, parent=None, width=5, height=4, dpi=100):
+    def __init__(self, parent=None, width=8, height=6, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
 
@@ -32,16 +33,35 @@ class PlotCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
 
 
+class PlotCanvas3D(FigureCanvas):
+    def __init__(self, parent=None, width=6, height=8, dpi=100):
+        fig = Figure(figsize=(width, height), dpi=dpi)
+        self.axes = fig.add_subplot(111, projection='3d')
+
+        FigureCanvas.__init__(self, fig)
+        self.setParent(parent)
+
+        FigureCanvas.setSizePolicy(self,
+                                   QtWidgets.QSizePolicy.Expanding,
+                                   QtWidgets.QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
+
+
 class ProTracerDialog(QtWidgets.QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, is2d=True, parent=None):
         QtWidgets.QDialog.__init__(self, parent)
         self.setWindowTitle("ProTracer")
-        self.resize(800, 600)
+        # self.resize(800, 600)
+
+        if is2d:
+            self.resize(1500, 500)
+            self.canvas = PlotCanvas(self, width=15, height=5)
+        else:
+            self.resize(500, 1000)
+            self.canvas = PlotCanvas(self, width=5, height=10)
 
         screen = QtWidgets.QDesktopWidget().availableGeometry()
-        self.setGeometry(screen.width() - self.width(), 100, self.width(), self.height())
-
-        self.canvas = PlotCanvas(self, width=8, height=6)
+        self.setGeometry(screen.width() - self.width(), 75, self.width(), self.height())
 
         self.padding = 25.0
         self.linewidth = 8
@@ -78,10 +98,10 @@ class ProTracerDialog(QtWidgets.QDialog):
 
         self.plot_3d()
 
-    def adjust_coordinates(self, L, is2D = True):
+    def adjust_coordinates(self, L, is2d = True):
         # assumes first value is lowest for plot
         output = []
-        if is2D:
+        if is2d:
             minval = L[0]
         else:
             minval = min(L)
@@ -91,27 +111,32 @@ class ProTracerDialog(QtWidgets.QDialog):
 
         return output
 
-    def add_plot_data(self, shot_data, shot_summary, is2D=True):
-        x = shot_data.loc[
-            (shot_data['Extrapolated'] == 'N')
-        ]["Trajectory X Coordinate"].tolist()
+    def add_plot_data(self, shot_data, shot_summary, is2d=True, include_extrapolated=False):
+        if include_extrapolated:
+            x = shot_data["Trajectory X Coordinate"].tolist()
+            y = shot_data["Trajectory Y Coordinate"].tolist()
+            z = shot_data["Trajectory Z Coordinate"].tolist()
+        else:
+            x = shot_data.loc[
+                (shot_data['Extrapolated'] == 'N')
+            ]["Trajectory X Coordinate"].tolist()
 
-        y = shot_data.loc[
-            (shot_data['Extrapolated'] == 'N')
-        ]["Trajectory Y Coordinate"].tolist()
+            y = shot_data.loc[
+                (shot_data['Extrapolated'] == 'N')
+            ]["Trajectory Y Coordinate"].tolist()
 
-        z = shot_data.loc[
-            (shot_data['Extrapolated'] == 'N')
-        ]["Trajectory Z Coordinate"].tolist()
+            z = shot_data.loc[
+                (shot_data['Extrapolated'] == 'N')
+            ]["Trajectory Z Coordinate"].tolist()
 
         # Unnecessary at this point
         extrapolated = shot_data.loc[
             (shot_data['Extrapolated'] == 'N')
         ]["Extrapolated"].tolist()
 
-        x = self.adjust_coordinates(x, is2D)
-        y = self.adjust_coordinates(y, is2D)
-        z = self.adjust_coordinates(z, is2D)
+        x = self.adjust_coordinates(x, is2d)
+        y = self.adjust_coordinates(y, is2d)
+        z = self.adjust_coordinates(z, is2d)
 
         self.xmax = max(self.xmax, max(x))
         self.ymax = max(self.ymax, max(y))
@@ -123,6 +148,9 @@ class ProTracerDialog(QtWidgets.QDialog):
 
     def init_2d(self):
         self.canvas.ax.clear()
+        self.canvas.ax.set_xlim(0, self.xmax + self.padding)
+        self.canvas.ax.set_ylim(0, self.zmax + self.padding)
+
         for i in range(len(self.data)):
             # self.lines[i].set_data([], [])
             x = self.data[i][0, 0:1]
@@ -180,6 +208,10 @@ class ProTracerDialog(QtWidgets.QDialog):
 
     def init_3d(self):
         self.canvas.ax.clear()
+        self.canvas.ax.set_xlim3d([0, self.xmax + self.padding])
+        self.canvas.ax.set_ylim3d([0, self.ymax + self.padding])
+        self.canvas.ax.set_zlim3d([0, self.zmax + self.padding])
+
         for i in range(len(self.data)):
             x = self.data[i][0, 0:1]
             y = self.data[i][1, 0:1]
