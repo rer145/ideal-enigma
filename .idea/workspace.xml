@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbfe53b2-337d-4f46-a2ac-0fe93b1d7cd1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/search-large.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/crappy-golfers.txt" afterPath="$PROJECT_DIR$/data/crappy-golfers.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/curves-for-days.py" afterPath="$PROJECT_DIR$/examples/curves-for-days.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/high-wind.py" afterPath="$PROJECT_DIR$/examples/high-wind.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/long-ball.py" afterPath="$PROJECT_DIR$/examples/long-ball.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/low-traj-ollie.py" afterPath="$PROJECT_DIR$/examples/low-traj-ollie.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/spieth_sucks.py" afterPath="$PROJECT_DIR$/examples/spieth_sucks.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dialog_search.py" afterPath="$PROJECT_DIR$/dialog_search.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pt_plot.py" afterPath="$PROJECT_DIR$/pt_plot.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,52 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="widget_mpl.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/widget_mpl.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="257">
-                  <caret line="169" column="39" lean-forward="true" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
-                  <folding>
-                    <element signature="e#403#445#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="dialog_search.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dialog_search.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="61" column="94" lean-forward="false" selection-start-line="61" selection-start-column="94" selection-end-line="61" selection-end-column="94" />
-                  <folding>
-                    <element signature="e#0#42#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,13 +62,10 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/window_main.py" />
         <option value="$PROJECT_DIR$/test_plot.py" />
-        <option value="$PROJECT_DIR$/widget_mpl.py" />
         <option value="$PROJECT_DIR$/pt_data.py" />
         <option value="$PROJECT_DIR$/examples/short-ball.py" />
-        <option value="$PROJECT_DIR$/pt_plot.py" />
         <option value="$PROJECT_DIR$/examples/spinners.py" />
         <option value="$PROJECT_DIR$/examples/3d_rotate.py" />
-        <option value="$PROJECT_DIR$/dialog_search.py" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/data/crappy-golfers.txt" />
         <option value="$PROJECT_DIR$/examples/curves-for-days.py" />
@@ -128,6 +73,10 @@
         <option value="$PROJECT_DIR$/examples/long-ball.py" />
         <option value="$PROJECT_DIR$/examples/low-traj-ollie.py" />
         <option value="$PROJECT_DIR$/examples/spieth_sucks.py" />
+        <option value="$PROJECT_DIR$/bak_pt_plot.py" />
+        <option value="$PROJECT_DIR$/dialog_search.py" />
+        <option value="$PROJECT_DIR$/pt_plot.py" />
+        <option value="$PROJECT_DIR$/widget_mpl.py" />
       </list>
     </option>
   </component>
@@ -186,8 +135,8 @@
       <recent name="C:\Users\ronri\OneDrive\Mercyhurst\DATA 520 - Intro to Programming\projects\ideal-enigma\data" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ronri\OneDrive\Mercyhurst\DATA 520 - Intro to Programming\projects\ideal-enigma\examples" />
       <recent name="C:\Users\ronri\OneDrive\Mercyhurst\DATA 520 - Intro to Programming\projects\ideal-enigma" />
+      <recent name="C:\Users\ronri\OneDrive\Mercyhurst\DATA 520 - Intro to Programming\projects\ideal-enigma\examples" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -202,7 +151,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.3d_rotate">
+  <component name="RunManager" selected="Python.long-ball">
     <configuration name="3d_rotate" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -216,6 +165,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ideal-enigma" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/3d_rotate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ideal-enigma" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -271,37 +237,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="low-traj-ollie" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ideal-enigma" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/low-traj-ollie.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.high-wind" />
       <item index="1" class="java.lang.String" itemvalue="Python.long-ball" />
-      <item index="2" class="java.lang.String" itemvalue="Python.low-traj-ollie" />
-      <item index="3" class="java.lang.String" itemvalue="Python.curves-for-days" />
-      <item index="4" class="java.lang.String" itemvalue="Python.3d_rotate" />
+      <item index="2" class="java.lang.String" itemvalue="Python.curves-for-days" />
+      <item index="3" class="java.lang.String" itemvalue="Python.3d_rotate" />
+      <item index="4" class="java.lang.String" itemvalue="Python.app" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.3d_rotate" />
-        <item index="1" class="java.lang.String" itemvalue="Python.curves-for-days" />
-        <item index="2" class="java.lang.String" itemvalue="Python.high-wind" />
-        <item index="3" class="java.lang.String" itemvalue="Python.long-ball" />
-        <item index="4" class="java.lang.String" itemvalue="Python.low-traj-ollie" />
+        <item index="0" class="java.lang.String" itemvalue="Python.long-ball" />
+        <item index="1" class="java.lang.String" itemvalue="Python.app" />
+        <item index="2" class="java.lang.String" itemvalue="Python.3d_rotate" />
+        <item index="3" class="java.lang.String" itemvalue="Python.curves-for-days" />
+        <item index="4" class="java.lang.String" itemvalue="Python.high-wind" />
       </list>
     </recent_temporary>
   </component>
@@ -320,12 +269,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13802083" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22539683" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22539683" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -356,23 +304,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/matplot-animation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pt_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -385,7 +316,7 @@
         <state relative-caret-position="272">
           <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -492,28 +423,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pt_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pt_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="85" column="42" lean-forward="false" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -542,16 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dialog_search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="61" column="94" lean-forward="false" selection-start-line="61" selection-start-column="94" selection-end-line="61" selection-end-column="94" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/window_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-51">
@@ -565,7 +468,7 @@
         <state relative-caret-position="68">
           <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -594,14 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/long-ball.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/high-wind.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -626,10 +521,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bak_pt_plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bak_widget_mpl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dialog_search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="180" column="76" lean-forward="true" selection-start-line="180" selection-start-column="76" selection-end-line="180" selection-end-column="76" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pt_plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/long-ball.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/widget_mpl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="169" column="39" lean-forward="true" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
+        <state relative-caret-position="-2286">
+          <caret line="92" column="22" lean-forward="true" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
           <folding>
             <element signature="e#403#445#0" expanded="true" />
           </folding>
