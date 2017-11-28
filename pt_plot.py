@@ -5,7 +5,7 @@ import matplotlib.animation as animation
 
 
 class ProTracerPlot():
-    def __init__(self):
+    def __init__(self, add_extrapolation=False, is_2d=True):
         self.padding = 25.0
         self.linewidth = 8
         self.interval = 50
@@ -21,9 +21,17 @@ class ProTracerPlot():
         self.ymax = -1
         self.zmax = -1
 
+        self.extrapolation = add_extrapolation
+        self.is_2d = is_2d
+
     def adjust_coordinates(self, L):
+        # assumes first value is lowest for plot
+        # trim list when x coord hits 0 after 1st?
         output = []
-        minval = min(L)
+        if self.is_2d:
+            minval = L[0]
+        else:
+            minval = min(L)
 
         for item in L:
             output.append(item - minval)
@@ -31,17 +39,22 @@ class ProTracerPlot():
         return output
 
     def add_plot_data(self, shot_data, shot_summary):
-        x = shot_data.loc[
-            (shot_data['Extrapolated'] == 'N')
-        ]["Trajectory X Coordinate"].tolist()
+        if self.extrapolation:
+            x = shot_data["Trajectory X Coordinate"].tolist()
+            y = shot_data["Trajectory Y Coordinate"].tolist()
+            z = shot_data["Trajectory Z Coordinate"].tolist()
+        else:
+            x = shot_data.loc[
+                (shot_data['Extrapolated'] == 'N')
+            ]["Trajectory X Coordinate"].tolist()
 
-        y = shot_data.loc[
-            (shot_data['Extrapolated'] == 'N')
-        ]["Trajectory Y Coordinate"].tolist()
+            y = shot_data.loc[
+                (shot_data['Extrapolated'] == 'N')
+            ]["Trajectory Y Coordinate"].tolist()
 
-        z = shot_data.loc[
-            (shot_data['Extrapolated'] == 'N')
-        ]["Trajectory Z Coordinate"].tolist()
+            z = shot_data.loc[
+                (shot_data['Extrapolated'] == 'N')
+            ]["Trajectory Z Coordinate"].tolist()
 
         # Unnecessary at this point
         extrapolated = shot_data.loc[
@@ -70,7 +83,8 @@ class ProTracerPlot():
             self.lines[i].set_data(datas[i][0, :num], datas[i][2, :num])
         return self.lines
 
-    def plot_2d(self):
+    def plot_2d(self, title="ProTracer 2D"):
+        self.is_2d = True
         self.xmax += self.padding
         self.ymax += self.padding
         self.zmax += self.padding
@@ -78,7 +92,7 @@ class ProTracerPlot():
 
         fig = plt.figure(figsize=(self.aspect_ratio * self.aspect_size, self.aspect_size))
         ax = plt.axes(xlim=(0, self.xmax), ylim=(0, self.zmax))
-        ax.set_title("ProTracer 2D")
+        ax.set_title(title)
 
         for i in range(len(self.data)):
             label = '{0} - Round {1}'.format(
@@ -92,6 +106,10 @@ class ProTracerPlot():
         handles, labels = ax.get_legend_handles_labels()
         ax.legend(handles, labels)
         #plt.axis('off')
+
+        mng = plt.get_current_fig_manager()
+        mng.window.showMaximized()
+
         plt.show()
 
     def init_3d(self):
@@ -105,7 +123,8 @@ class ProTracerPlot():
             lines[i].set_3d_properties(datas[i][2, :num])
         return lines
 
-    def plot_3d(self):
+    def plot_3d(self, azim=45, axis_on=False, title="ProTracer 3D"):
+        self.is_2d = False
         self.xmax += self.padding
         self.ymax += self.padding
         self.zmax += self.padding
@@ -113,9 +132,9 @@ class ProTracerPlot():
 
         fig = plt.figure()
         ax = p3.Axes3D(fig)
-        ax.set_title("ProTracer 3D")
-        ax.view_init(elev=0, azim=55)
-        ax._axis3don = False
+        ax.set_title(title)
+        ax.view_init(elev=0, azim=azim)
+        ax._axis3don = axis_on
 
         for i in range(len(self.data)):
             label = '{0} - Round {1}'.format(
@@ -141,4 +160,8 @@ class ProTracerPlot():
         handles, labels = ax.get_legend_handles_labels()
         ax.legend(handles, labels)
         # plt.axis('off')
+
+        mng = plt.get_current_fig_manager()
+        mng.window.showMaximized()
+
         plt.show()

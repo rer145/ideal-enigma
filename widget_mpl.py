@@ -98,8 +98,9 @@ class ProTracerDialog(QtWidgets.QDialog):
 
         self.plot_3d()
 
-    def adjust_coordinates(self, L, is2d = True):
+    def adjust_coordinates(self, L, is2d=True):
         # assumes first value is lowest for plot
+        # trim list when x coord hits 0 after 1st?
         output = []
         if is2d:
             minval = L[0]

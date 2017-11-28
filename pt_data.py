@@ -2,13 +2,13 @@ import pandas as pd
 import numpy as np
 
 
-def load_file(filename):
+def load_file(filename, sep=';'):
     """ (string) -> DataFrame
 
     Returns a pandas DataFrame with all the contents of the file specified.
     """
 
-    data = pd.read_csv(filename, sep=';')
+    data = pd.read_csv(filename, sep=sep)
 
     # Create helper columns
     data["Player Full Name"] = data["Player First Name"] + " " + data["Player Last Name"]
@@ -109,3 +109,33 @@ def get_shot(data, golfer, tournament, round, hole, last_name_first=True):
         (data["Round"] == int(round)) &
         (data["Hole Number"] == int(hole))
     ].sort_values(by=['Trajectory Sequence'])
+
+
+def get_shot_summary(shot_data):
+    """ (DataFrame) -> dictionary
+
+    Returns a dictionary of summary data.
+    """
+
+    summary = {}
+    summary["Player First Name"] = shot_data.iloc[0]["Player First Name"]
+    summary["Player Last Name"] = shot_data.iloc[0]["Player Last Name"]
+    summary["Player Full Name"] = shot_data.iloc[0]["Player Full Name"]
+    summary["Tournament Name"] = shot_data.iloc[0]["Tournament Name"]
+    summary["Round"] = shot_data.iloc[0]["Round"]
+    summary["Hole Number"] = shot_data.iloc[0]["Hole Number"]
+    summary["Club Head Speed"] = shot_data.iloc[0]["Club Head Speed"]
+    summary["Ball Speed"] = shot_data.iloc[0]["Ball Speed"]
+    summary["Smash Factor"] = shot_data.iloc[0]["Smash Factor"]
+    summary["Vertical Launch Angle"] = shot_data.iloc[0]["Vertical Launch Angle"]
+    summary["Apex Height"] = shot_data.iloc[0]["Apex Height"]
+    summary["Actual Flight Time"] = shot_data.iloc[0]["Actual Flight Time"]
+    summary["Actual Range"] = shot_data.iloc[0]["Actual Range"]
+    summary["Actual Height"] = shot_data.iloc[0]["Actual Height"]
+    summary["Distance of Impact"] = shot_data.iloc[0]["Distance of Impact"]
+    summary["Club"] = shot_data.iloc[0]["Club"]
+    summary["Total Distance"] = shot_data.iloc[0]["Total Distance"]
+    summary["Ending Location Description"] = shot_data.iloc[0]["Ending Location Description"]
+    summary["Weather"] = shot_data.iloc[0]["Weather"]
+
+    return summary

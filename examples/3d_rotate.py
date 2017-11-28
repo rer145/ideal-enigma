@@ -68,4 +68,4 @@ for shot in shots:
 
 
 # pt.plot_2d()
-pt.plot_3d()
+pt.plot_3d(azim=100)
