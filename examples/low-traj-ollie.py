@@ -3,7 +3,7 @@ import pt_data
 
 pt = pt_plot.ProTracerPlot(add_extrapolation=False)
 
-data = pt_data.load_file('C:\\Users\\ronri\\OneDrive\\Mercyhurst\\DATA 520 - Intro to Programming\\projects\\ideal-enigma\\data\\crappy-golfers.TXT', ',')
+data = pt_data.load_file('C:\\Users\\ronri\\OneDrive\\Mercyhurst\\DATA 520 - Intro to Programming\\projects\\ideal-enigma\\data\\crappy-golfers.TXT')
 
 shots = []
 shots.append({
