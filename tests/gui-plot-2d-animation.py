@@ -12,7 +12,7 @@ class App(QMainWindow):
         super().__init__()
         self.left = 10
         self.top = 10
-        self.title = 'PyQt5 matplotlib example - pythonspot.com'
+        self.title = ''
         self.width = 640
         self.height = 400
         self.x = np.arange(0, 2 * np.pi, 0.01)

@@ -171,10 +171,6 @@ class ProTracerDialog(QtWidgets.QDialog):
             x = self.data[i][0, :num]
             y = self.data[i][2, :num]
 
-            print(x)
-            print(y)
-            print('\n\n')
-
             label = '{0} - Round {1}'.format(
                 self.labels[i]["Player Last Name"],
                 self.labels[i]["Round"])
@@ -209,6 +205,7 @@ class ProTracerDialog(QtWidgets.QDialog):
 
     def init_3d(self):
         self.canvas.ax.clear()
+        self.canvas.ax.mouse_init()
         self.canvas.ax.set_xlim3d([0, self.xmax + self.padding])
         self.canvas.ax.set_ylim3d([0, self.ymax + self.padding])
         self.canvas.ax.set_zlim3d([0, self.zmax + self.padding])
@@ -233,11 +230,6 @@ class ProTracerDialog(QtWidgets.QDialog):
             x = self.data[i][0, :num]
             y = self.data[i][1, :num]
             z = self.data[i][2, :num]
-
-            print(x)
-            print(y)
-            print(z)
-            print('\n\n')
 
             label = '{0} - Round {1}'.format(
                 self.labels[i]["Player Last Name"],
