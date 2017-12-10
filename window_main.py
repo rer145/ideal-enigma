@@ -7,7 +7,6 @@ import resource_main
 
 # Load Dialogs
 import dialog_about
-#import dialog_protracer
 import dialog_search
 
 
